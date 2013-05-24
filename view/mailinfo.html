@@ -63,35 +63,30 @@
 
             </div>
         </div>
-        <!--------------------------- inoutbox page -------------------------->
+        <!--------------------------- mailinfo page -------------------------->
         <div id="mainWindow" class="container">
             <div class="row-fluid">
               <div class="mailContainer">
-                <h3>发送消息</h3>
-                <div class="objectInfo">
-                  <span>寄给: Chris</span>
-                  <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
-                  <div class="titleAndMail">
-                    <div class="titleAndMail-title">
-                      <label for="titleAndMail-title-input">标题:</label>
-                      <input id="titleAndMail-title-input" class="input-xxlarge" maxlength="20" type="text" name="titleAndMail-title-input" placeholder="写入你的标题">
+                <h3>你最近好吗？</h3>
+                <div class="mailInfoBox">
+                    <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
+                    <div class="mailInfoBox-titleAndDate">
+                        <p style="margin-bottom:5px;">标题:<span>你最近好吗？</span></p>
+                        <p>时间:<span>2013-05-04 12:34</span></p>
+                        <p class="resultHead"></p>
                     </div>
-                    <div class="titleAndMail-mail">
-                      <label for="titleAndMail-mail-input">内容:</label>
-                      <textarea id="titleAndMail-mail-input" name="titleAndMail-mail-input" rows="15"></textarea>
-                    </div>
-                  </div>
-                  <div class="objectInfoFooter">
-                    <button class="btn btn-success" type="button">发送信息</button>
-                    <button class="btn" type="button">取消</button>
-                  </div>
+                    <p class="mailInfoBox-mail" id="mailInfoBox-mail-id">在旅程结束N个月后，终于开始记录我的第一次美国之行，其间几欲逃避，可念及记忆力已大不如前，再不抢救，便会如同《献给阿尔吉侬的花束》里智力进入衰退期的查理·高登一般，陷入对垂暮的恐惧。简单一些，把还能够记起的事情来一篇流水帐，也好过烂在回忆里。</p>
                 </div>
+                <p class="resultFooter"></p>
+                <div class="mailInfoBoxFooter">
+                    <button class="btn btn-success" type="button">回信息</button>
+                    <button class="btn" type="button">删除</button>
+                  </div>
               </div>
             </div>
         </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
-        <script src="js/sendmail.js"></script>
     </body>
 </html>

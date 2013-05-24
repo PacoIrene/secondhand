@@ -1,0 +1,54 @@
+/*------------------------------------------------------------*/
+/*--------------------- common basic module ------------------*/
+/*------------------------------------------------------------*/
+.mailContainer{
+    background-color: white;
+}
+.mailContainer h3{
+    padding: 20px 20px 10px 20px;
+}
+.mailInfoBox{
+    padding-left: 20px;
+    width: 60%;
+}
+.mailInfoBox a{
+    float: left;
+    padding-right: 10px;
+}
+.mailInfoBox img{
+    width:48px;
+    height: 48px;
+}
+.mailInfoBox-titleAndDate p{
+    color: #666;
+    font-size: 14px;
+}
+.mailInfoBox-titleAndDate p span{
+    color: #072;
+    margin-bottom: 5px;
+}
+.resultHead{
+    border-bottom: 1px dashed #ddd;
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 80%;
+}
+.mailInfoBox-mail{
+    width:80%;
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+}
+.resultFooter{
+    border-bottom: 1px dashed #ddd;
+    margin-left: 70px;
+    width: 48%;
+}
+.mailInfoBoxFooter{
+    margin-left: 40px;
+    width: 48%;
+    text-align: right;
+    margin-top: 30px;
+    padding-bottom: 40px;
+}
+/*------------------------------------------------------------*/
