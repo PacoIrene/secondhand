@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>iSharing - 搜索结果</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
+              media="screen">
+        <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+        <link href="css/common.css" rel="stylesheet" media="screen">
+        <link href="css/login.css" rel="stylesheet" media="screen">
+    </head>
+
+    <body>
+        <!--------------------------- navigation bar -------------------------->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner navBack">
+                <div>
+                    <a class="btn btn-navbar" data-toggle="collapse"
+                       data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+                            class="icon-bar"></span> <span class="icon-bar"></span> </a> <a
+                        class="brand" href="#"><img src="img/websiteTitle.png"
+                                                class="websiteTitleInNav" /> </a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="navUl">
+                            <li class="active">
+                                <a href="#">首页</a>
+                            </li>
+                            <li>
+                                <a href="#">我的小组</a>
+                            </li>
+                            <li>
+                                <a href="#">发现小组</a>
+                            </li>
+                            <li>
+                                <a href="#">消息</a>
+                            </li>
+                        </ul>
+                        <div class="searchinfo">
+                            <ul class="nav" id="navU2">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">退出</a></li>
+                                    </ul>
+                                </li>
+                                <li><form class="form-search searchFormInNav">
+                                        <input type="text" id="inp-query" class="input-medium search-query"
+                                               placeholder="搜索你要的">
+                                        <button type="submit" class="btn">
+                                            <i class="icon-search"></i>
+                                        </button>
+                                    </form></li>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--------------------------- Result page  -------------------------->
+        <div id="mainWindow" class="container">
+            <div class="row-fluid">
+                <div class="resultList span9">
+                    <div class="orderLink">
+                        <small>排序方式:</small> <a href="#">按时间排序</a> <small>/</small> <a
+                            href="#">按大小排序</a> <small>/</small> <a href="#">按类型排序</a>
+                    </div>
+                    <p class="resultHead"></p>
+                    <div class="resultPart">
+                        <div class="singleResult container-fluid">
+                            <img alt="" src="img/excel2013icon.png"
+                                 class="sourceImg img-rounded">
+                            <div class="titlePath">
+                                <span class="sourceTitle"> <a href="#">ch11文件系统.ppt</a> </span> <span
+                                    class="sourcePath">
+                                    F:\学习\OperatingSystem_张惠娟\同济大学操作系统2010\课件\文件管理 </span>
+                            </div>
+                        </div>
+                        <div class="singleResult container-fluid">
+                            <img alt="" src="img/word2013icon.png"
+                                 class="sourceImg img-rounded">
+                            <div class="titlePath">
+                                <span class="sourceTitle"> <a href="#">文件系统之复习题及部分答案.doc</a>
+                                </span> <span class="sourcePath">
+                                    F:\学习\OperatingSystem_张惠娟\同济大学操作系统2010\课件\文件管理 </span>
+                            </div>
+                        </div>
+                        <div class="singleResult container-fluid">
+                            <img alt="" src="img/onenote2013icon.png"
+                                 class="sourceImg img-rounded">
+                            <div class="titlePath">
+                                <span class="sourceTitle"> <a href="#">MyFileSystem.java</a>
+                                </span> <span class="sourcePath">
+                                    F:\学习\OperatingSystem_张惠娟\同济大学操作系统2010\课件\文件管理\例子\黄鹏飞 </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="searchFooter">
+                        <div class="pagination">
+                            <ul>
+                                <li><a href="#">前一页</a>
+                                </li>
+                                <li><a href="#">1</a>
+                                </li>
+                                <li><a href="#">2</a>
+                                </li>
+                                <li><a href="#">3</a>
+                                </li>
+                                <li><a href="#">4</a>
+                                </li>
+                                <li><a href="#">5</a>
+                                </li>
+                                <li><a href="#">后一页</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="sideBar span3">
+                    <!--Side bar content-->
+                    <ul class="sideBarUl unstyled">
+                        <li class="sideBarLi userInfo"><img class="portraitInUserInfo"
+                                                            src="img/pian.jpg" /> <span class="nameInUserInfo">name</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.icheck.min.js"></script>
+        <script src="js/zepto.icheck.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/homepage.js"></script>
+    </body>
+</html>
