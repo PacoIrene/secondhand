@@ -4,5 +4,30 @@
 .outAndIn{
 	padding: 20px 20px 20px 20px;
 	width: 70%;
-	height: 10%;
+}
+.inoutHead{
+	margin-bottom: 0;
+}
+.inoutMain{
+	border: 1px solid #ddd;
+	border-top: none;
+	padding-left: 12px;
+}
+.inoutBoxTable th{
+	color: #666;
+	font-size: 12px;
+}
+.inoutBoxTable a{
+	text-decoration: none;
+}
+.inoutBoxTable a:hover{
+	background-color: #08c;
+	color: white;
+}
+.searchFooter{
+	width:70%;
+	padding: 0 20px 20px 20px;
+}
+.pagination ul{
+	right:0;
 }
