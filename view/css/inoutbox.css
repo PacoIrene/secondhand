@@ -3,6 +3,7 @@
 /*------------------------------------------------------------*/
 .inoutBox{
 	background-color: #fff;
+	border-radius: 15px;
 }
 .outAndIn{
 	padding: 20px 20px 20px 20px;

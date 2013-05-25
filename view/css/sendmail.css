@@ -3,6 +3,7 @@
 /*------------------------------------------------------------*/
 .mailContainer{
 	background-color: white;
+	border-radius: 15px;
 }
 .mailContainer h3{
 	padding: 20px 20px 10px 20px;
@@ -37,5 +38,8 @@
 	text-align: right;
 	margin-top: 10px;
 	padding-bottom: 40px;
+}
+#titleAndMail-title-input{
+	margin-top: 9px;
 }
 /*------------------------------------------------------------*/

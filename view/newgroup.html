@@ -9,7 +9,7 @@
               media="screen">
         <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
         <link href="css/common.css" rel="stylesheet" media="screen">
-        <link href="css/sendmail.css" rel="stylesheet" media="screen">
+        <link href="css/newgroup.css" rel="stylesheet" media="screen">
     </head>
 
     <body>
@@ -63,35 +63,61 @@
 
             </div>
         </div>
-        <!--------------------------- inoutbox page -------------------------->
-        <div id="mainWindow" class="container">
+        <!--------------------------- mailinfo page -------------------------->
+        <div id="mainWindow" class="container-fluid">
             <div class="row-fluid">
-              <div class="mailContainer">
-                <h3>发送消息</h3>
-                <div class="objectInfo">
-                  <span>寄给: Chris</span>
-                  <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
-                  <div class="titleAndMail">
-                    <div class="titleAndMail-title">
-                      <label for="titleAndMail-title-input">标题:</label>
-                      <input id="titleAndMail-title-input" class="input-xxlarge" maxlength="20" type="text" name="titleAndMail-title-input" placeholder="写入你的标题">
-                    </div>
-                    <div class="titleAndMail-mail">
-                      <label for="titleAndMail-mail-input" style="vertical-align:top;">内容:</label>
-                      <textarea id="titleAndMail-mail-input" name="titleAndMail-mail-input" rows="15"></textarea>
-                    </div>
-                  </div>
-                  <div class="objectInfoFooter">
-                    <button class="btn btn-success" type="button">发送信息</button>
-                    <button class="btn" type="button">取消</button>
-                  </div>
+                <div class="span8 content">
+                    <h3>创建小组</h3>
+                    <div class="groupInfoPart">
+                        <form class="groupInfoPart-form">
+                            <div class="groupInfoPart-title">
+                                <label for="groupInfoPart-title-input" style="vertical-align:middle;">标题：</label>
+                                <input id="groupInfoPart-title-input" class="input-xlarge" maxlength="20" type="text" name="groupInfoPart-title-input" placeholder="写入你的标题">
+                            </div>                            
+                            <div class="btn-group groupInfoPart-class">
+                                <label>分类：</label>
+                                <a class="btn dropdown-toggle groupInfoPart-class-button" data-toggle="dropdown" href="#" id="selectClass">
+                                                 分类
+                                     <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                 <!-- dropdown menu links -->
+                                    <li class="groupInfoPart-class-li"><a href="#">书籍</a></li>
+                                    <li class="groupInfoPart-class-li"><a href="#">电子产品</a></li>
+                                    <li class="groupInfoPart-class-li"><a href="#">生活用品</a></li>
+                                    <li class="groupInfoPart-class-li"><a href="#">其他</a></li>
+                                </ul>
+                            </div>
+                            <div class="groupInfoPart-description">
+                                <label for="groupInfoPart-description-input" style="vertical-align:top;">内容：</label>
+                                <textarea id="groupInfoPart-description-input" name="titleAndMail-description-input" rows="15"></textarea>
+                            </div>
+                            <div class="groupInfoPart-submitButton">
+                                <button class="btn btn-success" type="button">确认创建</button>
+                            </div>
+                        </form>                      
+                    </div>                    
                 </div>
-              </div>
+                <div class="span4 aside">
+                    <div class="newGroupInfo">
+                        <span>特别说明</span>
+                        <p style="margin-bottom:0;">
+                            请试着先去搜索，如果未能找到相符合的小组，请再来创建小组
+                        </p>
+                        <p style="margin-bottom:0;">
+                            请遵守要求，不要创建违法以及不道德的小组,否则会对你的账号产生影响
+                        </p>
+                        <p style="margin-bottom:0;">
+                            另外，没了。
+                        </p>
+                            <br>                        
+                    </div>
+                </div>                   
             </div>
         </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
-        <script src="js/sendmail.js"></script>
+        <script src="js/newgroup.js"></script>
     </body>
 </html>

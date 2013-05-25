@@ -1,0 +1,64 @@
+/*------------------------------------------------------------*/
+/*--------------------- common basic module ------------------*/
+/*------------------------------------------------------------*/
+.row-fluid{
+	background-color: white;
+	border-radius: 15px;
+}
+.content h3{
+	padding: 20px;
+}
+.personpic{
+	width: 48px;
+	height: 48px;
+}
+.grouperPerson-Leader{
+	padding-left: 20px;
+}
+.newGroupInfo{
+	margin: 50px;
+	padding: 20px;
+	margin-left: 0;
+	background-color: #F0F6F3;
+}
+.newGroupInfo p{
+	text-indent:2em;
+	font-size: 12px;
+}
+.newGroupInfo span{
+	color: green;
+	margin-bottom: 120px;
+}
+.groupInfoPart{
+	padding-left: 20px;
+}
+.groupInfoPart-form label{
+	display: inline;
+}
+#groupInfoPart-title-input{
+	margin-top: 9px;
+}
+.groupInfoPart-class{
+	display: block;
+	margin-top: 20px;
+}
+.groupInfoPart-class-button{
+	margin-top: -9px;
+	margin-left: 2px;
+}
+.dropdown-menu{
+	margin-left: 42px;
+}
+.groupInfoPart-description textarea{
+	resize: none;
+	width:530px;
+}
+.groupInfoPart-description{
+	margin-top: 20px;
+}
+.groupInfoPart-submitButton{
+	margin-top: 10px;
+	text-align: right;
+	width: 590px;
+}
+/*------------------------------------------------------------*/

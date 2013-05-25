@@ -5,6 +5,7 @@
 .resultList{
 	background-color:white;
 	box-shadow: 1px 1px 5px rgb(168, 168, 168);
+	border-radius: 15px;
 }
 .sourceImg{
 	float:left;
