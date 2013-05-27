@@ -20,6 +20,7 @@
 	padding: 20px;
 	margin-left: 0;
 	background-color: #F0F6F3;
+	border-radius: 15px;
 }
 .newGroupInfo p{
 	text-indent:2em;
