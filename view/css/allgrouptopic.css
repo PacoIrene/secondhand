@@ -11,6 +11,7 @@
 .groupLink a{
 	text-decoration: none;
 	margin-bottom: 10px;
+	color: #259;
 }
 .groupLink a:hover{
 	background-color: #3377AA;

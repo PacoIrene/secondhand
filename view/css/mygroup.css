@@ -28,7 +28,7 @@
 }
 .groupList-li a{
 	text-decoration: none;
-	
+	color: #259;
 }
 .groupList-li a:hover{
 	background-color: #3377AA;

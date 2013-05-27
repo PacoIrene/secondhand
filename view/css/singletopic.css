@@ -1,0 +1,92 @@
+.row-fluid{
+	background-color: white;
+	border-radius: 15px;
+}
+.topicInfo{
+	padding: 20px;
+}
+.topicInfo-title{
+	font-family:  Arial, Helvetica, sans-serif;
+}
+.topicInfo-head{
+	padding-bottom: 20px;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 20px;
+}
+.groupInfo-Pic,.topInfo-Pic{
+	float: left;
+	padding-right: 10px;
+}
+.groupInfo-Pic img,.topInfo-Pic img{
+	width: 48px;
+	height: 48px;
+}
+.groupInfo-content,.topInfo-content{
+	overflow: hidden;
+}
+.replyNum-info{
+	padding-left: 40px;
+	font-size: 14px;
+	font-weight: bold;
+	color: rgb(34, 34, 34);
+}
+.topicInfo-reply{
+	display: block;
+	padding-top: 20px;		
+}
+.topicInfo-reply-single{
+	display: block;
+	padding-top: 10px;
+	margin-bottom: 20px;
+	border-top: 1px solid #eee;
+}
+.topInfo-info p{
+	font-size: 13px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: rgb(34,34,34);
+	line-height: 22px;
+	margin-top: 10px;
+}
+.groupInfo-title a,.topInfo-title a{
+	text-decoration: none;
+	color: #259;
+}
+.groupInfo-title a:hover,.topInfo-title a:hover{
+	background-color: #37a;
+	color: white;
+}
+#topInfo-content-input{
+	resize:none;
+	width: 94%;
+}
+.addReply{
+	padding: 20px 0 20px 0;
+	margin-bottom: 20px;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+.replyButton{
+	text-align: right;
+	width: 96%;
+}
+.groupInfo{
+	margin-top: 100px;
+	padding: 20px;
+	width: 250px;
+	background-color: #E7F3F9;
+}
+.groupInfo-href{
+	margin-bottom: 10px;
+}
+.groupInfo-href a{
+	text-decoration: none;
+	color: #072;
+	background-color: #edf4ed;
+	padding: 3px;
+	padding-bottom: 5px;
+	border: 1px solid rgba(198,211,205,0.5);
+	border-radius: 4px;
+}
+.groupInfo-href a:hover{
+	background-color: #F3FFF9;
+}

@@ -23,6 +23,7 @@
 }
 .inoutBoxTable a{
 	text-decoration: none;
+	color: #259;
 }
 .inoutBoxTable a:hover{
 	background-color: #3377AA;
