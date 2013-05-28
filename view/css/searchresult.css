@@ -1,0 +1,99 @@
+.row-fluid{
+	background-color: white;
+	border-radius: 15px;
+}
+.content>h3{
+	padding: 20px;
+	padding-left: 30px;
+}
+.resultPart{
+	padding: 30px;
+	padding-top: 0;
+	overflow: hidden;
+	margin-left: 40px;
+}
+.result{
+	display: inline-block;
+	zoom: 1;
+	width: 80%;
+	vertical-align: top;
+	padding-top: 0;
+	padding-right: 5%;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	border-bottom: 1px dashed #ccc;
+	font-size: 12px;
+	letter-spacing: normal;
+	word-spacing: normal;
+}
+.resultPic{
+	float: left;
+	padding-top: 10px;
+	padding-right: 10px;
+}
+.resultPic img{
+	width: 48px;
+	height: 48px;
+}
+.resultContent{
+	overflow: hidden;
+}
+.resultTitle a{
+	text-decoration: none;
+	color: #259;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.resultTitle h3{
+	margin: 0;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+}
+.resultTitle a:hover{
+	background-color: #3377AA;
+	color: white;
+}
+#wanterList-more{
+	width: 85%;
+}
+.resultInfo>p{
+	color: #999999;
+}
+.resultInfo>p>span{
+	color: rgb(34,34,34);
+}
+.thingHead h4{
+	color: #072;
+	font-weight: normal;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #ddd;
+}
+.wantSide{
+	padding: 50px;
+	padding-left: 20px;
+	margin-top: 50px;
+}
+.thingHref-single a,.thingHead>a{
+	text-decoration: none;
+	color: #259;
+	padding: 5px;
+	margin-left: 10px;
+	border-radius: 5px;
+}
+.thingHref-single a.active{
+	background-color: #37a;
+	color: white;
+	border-radius: 5px;
+}
+.thingHref-single a:hover,.thingHead>a:hover{
+	background-color: #37a;
+	color:white;
+}
+.thingHref{
+	margin-top: 20px;
+	display: block;
+}
+.thingHref-single{
+	margin-bottom: 10px;
+}

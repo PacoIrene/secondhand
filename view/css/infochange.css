@@ -30,3 +30,23 @@
 	background-color: #3377AA;
 	color: white;
 }
+.thingInput-href{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.thingInput-href img{
+	width: 140px;
+	height: 140px;
+}
+.thingInput-href img{
+	margin-right: 20px;
+	margin-left: 32px;
+}
+.thingInput-href label{
+	float: left;
+	margin-top: 4px;
+	margin-right: 13px;
+}
+.thingInput-href label{
+	margin-top: 50px;
+}
