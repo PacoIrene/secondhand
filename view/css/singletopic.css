@@ -90,3 +90,7 @@
 .groupInfo-href a:hover{
 	background-color: #F3FFF9;
 }
+.topInfo-title span{
+	color: #666;
+	font-size: 12px;
+}
