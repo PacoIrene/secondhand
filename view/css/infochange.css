@@ -1,0 +1,32 @@
+.row-fluid{
+	background-color: white;
+	border-radius: 15px;
+}
+.control-label{
+	float: left;
+}
+.infoChange{
+	padding: 20px;
+}
+.infoChange h3{
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+.control-group{
+	text-align: right;
+	width: 300px;
+}
+.mainLink{
+	margin-top: 100px;
+}
+.mainLink-div{
+	margin-bottom: 10px;
+}
+.mainLink a{
+	text-decoration: none;
+	margin-bottom: 10px;
+}
+.mainLink a:hover{
+	background-color: #3377AA;
+	color: white;
+}
