@@ -1,0 +1,72 @@
+.row-fluid{
+	background-color: white;
+	border-radius: 15px;
+}
+.personPart{
+	padding: 20px;
+}
+.personPart-buy,.personPart-group{
+	margin-left: 10px;
+	margin-top: 20px;
+	border-bottom: 1px dashed #ddd;
+}
+.personPart-sell{
+	margin-left: 10px;
+	margin-top: 20px;
+}
+.personPart-sell-pic,.personPart-buy-pic,.personPart-group-pic{
+	display: inline-block;
+}
+.personPart-sell-li,.personPart-buy-li,.personPart-group-li{
+	padding-right: 20px;
+	float: left;
+}
+.personPart-group-li img{
+	width: 48px;
+	height: 48px;
+}
+.personPart-sell img,.personPart-buy-li img{
+	width: 100px;
+	height: 100px;
+}
+.personPart-sell,.personPart-buy,.personPart-group{
+	color:#072;
+}
+.hmore{
+	font-size: 12px;
+	color: #666;
+	margin-left: 10px;
+}
+.personPart-sell a,.personPart-buy-li a,.hmore a,.personPart-group-li a{
+	text-decoration: none;
+	color: #259;
+}
+.personPart-sell a:hover,.personPart-buy-li a:hover,.hmore a:hover,.personPart-group-li a:hover{
+	background-color: #37a;
+	color: white;
+}
+.personPart-sell dd,.personPart-group-li dd,.personPart-buy-li dd{
+	text-align: center;
+}
+.personInfo{
+	margin-top: 100px;
+}
+.personInfo-pic img{
+	float: left;
+	padding-right: 20px;
+}
+.personInfo-pic h3{
+	font-size: 16px;
+}
+.personInfo-edit a{
+	text-decoration: none;
+	color: #072;
+	background-color: #edf4ed;
+	padding: 3px;
+	padding-bottom: 5px;
+	border: 1px solid rgba(198,211,205,0.5);
+	border-radius: 4px;
+}
+.personInfo-edit a:hover{
+	background-color: #F3FFF9;
+}

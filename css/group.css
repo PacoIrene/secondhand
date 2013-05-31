@@ -1,0 +1,93 @@
+/*------------------------------------------------------------*/
+/*--------------------- common basic module ------------------*/
+/*------------------------------------------------------------*/
+.groupAll{
+	background-color: white;
+	width:auto;
+	margin: 0 auto;
+	border-radius: 15px;
+}
+.groupBasicTopic-head{
+	padding: 40px 40px 40px 40px;
+}
+.groupBasicTopic-head-pic{
+	width:48px;
+	height: 48px;
+	float: left;
+	margin-right: 10px;
+}
+.groupBasicTopic-head-nameAndButton{
+	margin: 8px 0 0 10px;
+}
+.groupBasicTopic-head-nameAndButton span{
+	font-size: 25px;
+	font-weight:bold;
+	vertical-align:middle;
+	margin-right: 60px;
+}
+.groupBasicTopic-basic{
+	background-color: #F0F6F3;
+	margin: 0 40px 40px 40px;
+	width: 50%;
+}
+.groupBasicTopic-basic p{
+	padding: 20px 20px 10px 20px;
+	font-size: 12px;
+	line-height: 22px;
+}
+#groupBasicTopic-basic-edit{
+	text-align: right;
+	padding-bottom: 20px;
+}
+#groupBasicTopic-basic-edit button{
+	padding: 4px 10px;
+	margin-right: 20px
+}
+.groupBasicTopic-topic{
+	margin: 0 40px 40px 40px;
+	width: 50%;
+}
+.topicTable{
+	margin-bottom: 0;
+}
+.topicTable th{
+	color: rgb(102, 102, 102);
+	font-size: 12px;
+	font-weight: normal;
+}
+.topicTable a{
+	text-decoration: none;
+	color: #259;
+}
+.topicTable a:hover{
+	background-color: #3377AA;
+	color: white;
+}
+#groupBasicTopic-topic-newTopic{
+	margin-left: 237.5px;
+	margin-top: -5px;
+}
+#groupBasicTopic-topic-more{
+	width: 100%;
+	margin-bottom: 40px;
+}
+.groupPerson{
+	float: right;
+	margin-top: -752px;
+	width:420px;
+	margin-right: 20px;
+}
+.groupPerson-grouper img,.groupPerson-leader img{
+	width: 48px;
+	height: 48px;
+}
+.groupPerson-grouper{
+	margin-top: 10px;
+}
+.groupPerson-grouperList img{
+	margin: 0 10px 20px 0;
+}
+#groupPerson-grouperList-more{
+	width: 90%;
+}
+/*------------------------------------------------------------*/

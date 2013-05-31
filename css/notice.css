@@ -1,0 +1,28 @@
+.row-fluid{
+	background-color: white;
+	border-radius: 15px;
+}
+.noticeAll{
+	padding: 60px;
+	padding-top: 20px;
+}
+.noticeAll{
+}
+.noticeAll h3{
+	padding: 20px 20px 0px 20px;
+}
+.noticeSingle{
+	border-bottom: 1px dashed #eee;
+	padding-top: 10px;
+}
+.noticeSingle a{
+	text-decoration: none;
+	color: #259;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+.noticeSingle a:hover{
+	background-color: #3377AA;
+	color: white;
+}

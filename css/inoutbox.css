@@ -1,0 +1,39 @@
+/*------------------------------------------------------------*/
+/*--------------------- common basic module ------------------*/
+/*------------------------------------------------------------*/
+.inoutBox{
+	background-color: #fff;
+	border-radius: 15px;
+}
+.outAndIn{
+	padding: 20px 20px 20px 20px;
+	width: 70%;
+}
+.inoutHead{
+	margin-bottom: 0;
+}
+.inoutMain{
+	border: 1px solid #ddd;
+	border-top: none;
+	padding-left: 12px;
+}
+.inoutBoxTable th{
+	color: #666;
+	font-size: 12px;
+}
+.inoutBoxTable a{
+	text-decoration: none;
+	color: #259;
+}
+.inoutBoxTable a:hover{
+	background-color: #3377AA;
+	color: white;
+}
+.searchFooter{
+	width:70%;
+	padding: 0 20px 20px 20px;
+}
+.pagination ul{
+	right:0;
+}
+/*------------------------------------------------------------*/

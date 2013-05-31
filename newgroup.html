@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>iSharing - 搜索结果</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
+              media="screen">
+        <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+        <link href="css/common.css" rel="stylesheet" media="screen">
+        <link href="css/newgroup.css" rel="stylesheet" media="screen">
+    </head>
+
+    <body>
+        <!--------------------------- navigation bar -------------------------->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner navBack">
+                <div>
+                    <a class="btn btn-navbar" data-toggle="collapse"
+                       data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+                            class="icon-bar"></span> <span class="icon-bar"></span> </a> <a
+                        class="brand" href="#"><img src="img/websiteTitle.png"
+                                                class="websiteTitleInNav" /> </a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="navUl">
+                            <li class="active">
+                                <a href="#">首页</a>
+                            </li>
+                            <li>
+                                <a href="#">我的小组</a>
+                            </li>
+                            <li>
+                                <a href="#">发现小组</a>
+                            </li>
+                            <li>
+                                <a href="#">消息</a>
+                            </li>
+                        </ul>
+                        <div class="searchinfo">
+                            <ul class="nav" id="navU2">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">退出</a></li>
+                                    </ul>
+                                </li>
+                                <li><form class="form-search searchFormInNav">
+                                        <input type="text" id="inp-query" class="input-medium search-query"
+                                               placeholder="搜索你要的">
+                                        <button type="submit" class="btn">
+                                            <i class="icon-search"></i>
+                                        </button>
+                                    </form></li>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--------------------------- mailinfo page -------------------------->
+        <div id="mainWindow" class="container-fluid">
+            <div class="row-fluid">
+                <div class="span8 content">
+                    <h3>创建小组</h3>
+                    <div class="groupInfoPart">
+                        <form class="groupInfoPart-form">
+                            <div class="groupInfoPart-title">
+                                <label for="groupInfoPart-title-input" style="vertical-align:middle;">标题：</label>
+                                <input id="groupInfoPart-title-input" class="input-xlarge" maxlength="20" type="text" name="groupInfoPart-title-input" placeholder="写入你的标题">
+                            </div>                            
+                            <div class="btn-group groupInfoPart-class">
+                                <label>分类：</label>
+                                <a class="btn dropdown-toggle groupInfoPart-class-button" data-toggle="dropdown" href="#" id="selectClass">
+                                                 分类
+                                     <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                 <!-- dropdown menu links -->
+                                    <li class="groupInfoPart-class-li"><a href="#">学校/学院</a></li>
+                                    <li class="groupInfoPart-class-li"><a href="#">书籍</a></li>
+                                    <li class="groupInfoPart-class-li"><a href="#">电子产品</a></li>
+                                    <li class="groupInfoPart-class-li"><a href="#">生活用品</a></li>
+                                    <li class="groupInfoPart-class-li"><a href="#">其他</a></li>
+                                </ul>
+                            </div>
+                            <div class="groupInfoPart-description">
+                                <label for="groupInfoPart-description-input" style="vertical-align:top;">内容：</label>
+                                <textarea id="groupInfoPart-description-input" name="titleAndMail-description-input" rows="15"></textarea>
+                            </div>
+                            <div class="groupInfoPart-submitButton">
+                                <button class="btn btn-success" type="button">确认创建</button>
+                            </div>
+                        </form>                      
+                    </div>                    
+                </div>
+                <div class="span4 aside">
+                    <div class="newGroupInfo">
+                        <span>特别说明</span>
+                        <p style="margin-bottom:0;">
+                            请试着先去搜索，如果未能找到相符合的小组，请再来创建小组
+                        </p>
+                        <p style="margin-bottom:0;">
+                            请遵守要求，不要创建违法以及不道德的小组,否则会对你的账号产生影响
+                        </p>
+                        <p style="margin-bottom:0;">
+                            另外，没了。
+                        </p>
+                            <br>                        
+                    </div>
+                </div>                   
+            </div>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/newgroup.js"></script>
+    </body>
+</html>

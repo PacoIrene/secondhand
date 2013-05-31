@@ -1,0 +1,56 @@
+/*------------------------------------------------------------*/
+/*--------------------- common basic module ------------------*/
+/*------------------------------------------------------------*/
+.row-fluid{
+	background-color: white;
+	border-radius: 15px;
+}
+.content h3{
+	padding: 20px;
+}
+.groupLead{
+	border-bottom: 1px dashed #ddd;
+	width: 87%;
+	margin-left: 20px;
+}
+.groupList{
+	display: inline-block;
+}
+.groupList-li{
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	float: left;
+}
+.groupList-li img{
+	width:48px;
+	height: 48px;
+}
+.groupList-li a{
+	text-decoration: none;
+	color: #259;
+}
+.groupList-li a:hover{
+	background-color: #3377AA;
+	color: white;
+}
+#grouperList-more{
+	margin-left: 20px;
+	margin-bottom: 40px;
+	width: 87%;
+}
+.groupLink{
+	margin-top: 100px;
+}
+.groupLink-div{
+	margin-bottom: 10px;
+}
+.groupLink a{
+	text-decoration: none;
+	margin-bottom: 10px;
+}
+.groupLink a:hover{
+	background-color: #3377AA;
+	color: white;
+}
+/*------------------------------------------------------------*/

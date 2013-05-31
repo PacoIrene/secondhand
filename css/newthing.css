@@ -1,0 +1,66 @@
+.row-fluid{
+	background-color: white;
+	border-radius: 15px;
+}
+.thingInput{
+	padding: 20px;
+}
+.thingInput h3{
+	font-family:  Arial, Helvetica, sans-serif;
+}
+.groupInfoPart-class{
+	margin-bottom: 10px;
+}
+.dropdown-menu{
+	margin-left: 44px;
+}
+.thingInput-href label,.groupInfoPart-class label,.thingInput-title label{
+	float: left;
+	margin-top: 4px;
+	margin-right: 13px;
+}
+.thingInput-href label{
+	margin-top: 50px;
+}
+.thingInputAll{
+	padding-left: 10px;
+}
+.thingInput-area label{
+	float: left;
+	margin-top: 4px;
+	margin-right: 13px;
+}
+#thingInput-area-input{
+	resize:none;
+	width: 80.5%;
+}
+.thingInput-button{
+	text-align: right;
+	width: 92%;
+}
+.thingInput-href{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.thingInput-href img{
+	width: 140px;
+	height: 140px;
+}
+.thingInput-href img{
+	margin-right: 20px;
+}
+.newThingInfo{
+	margin: 50px;
+	padding: 20px;
+	margin-left: 0;
+	background-color: #F0F6F3;
+	border-radius: 15px;
+}
+.newThingInfo p{
+	text-indent:2em;
+	font-size: 12px;
+}
+.newThingInfo span{
+	color: green;
+	margin-bottom: 120px;
+}

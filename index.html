@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>二手-登陆注册</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+        <link href="css/orange.css" rel="stylesheet" media="screen">
+        <link href="css/homepage.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+    
+    <!--************************message div *****************************-->
+    	<div class="messageDiv templateMsgDiv">
+			<i class="icon icon-circle"></i>
+			<p>恭喜您中了5000万超级大奖</p>
+		</div>
+		<div class="messagesDiv"></div>
+    
+        <!--************************- background ****************************-->
+        <div class="bodyBackground">
+          <!--************************- navigation bar ************************-->
+        <div id="headNav" class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner navBack">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#"><img src="img/websiteTitle.png" class="websiteTitleInNav" /></a>
+                    
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="navUl">
+                            <li class="active">
+                                <a href="#">首页</a>
+                            </li>
+                            <li>
+                                <a href="#">我的小组</a>
+                            </li>
+                            <li>
+                                <a href="#">发现小组</a>
+                            </li>
+                            <li>
+                                <a href="#">消息</a>
+                            </li>
+                        </ul>
+                         <div class="searchinfo">
+                            <ul class="nav" id="navU2">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">退出</a></li>
+                                    </ul>
+                                </li>
+                                <li><form class="form-search searchFormInNav">
+                                        <input type="text" id="inp-query" class="input-medium search-query"
+                                               placeholder="搜索你要的">
+                                        <button type="submit" class="btn">
+                                            <i class="icon-search"></i>
+                                        </button>
+                                    </form></li>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--************************- login div *****************************-->
+        <div id="loginDiv">
+            <!--******************** login div's background **for opacity****-->
+            <div class="backgroundDiv"></div>
+
+            <div class="L_Title LR_Title"></div>
+            <b class="goRegist goB"><i class="icon-circle-arrow-right"></i>去注册</b>
+            <div class="LR_Line L_Line"></div>
+
+			<div class="loginFormDiv">
+            <form id="loginForm" class="form-horizontal" action="login.do" method="post">
+            
+            	<div class="control-group entranceControl">
+                	<i id="userIconLogin" class="icon-user icon-large"></i>
+                	<input id="entrance" type="text" placeholder="邮箱"  /><br/>
+                </div>
+                <div class="alert alert-error entranceAlert">
+  					<span>Best check yourself, you're not...</span>
+				</div>
+				
+				<div class="control-group passwordControl">
+                	<i id="pwdIconLogin" class="icon-key icon-large"></i>
+                	<input id="password" type="password" placeholder="密码" /><br/>
+                </div>
+                <div class="alert alert-error passwordAlert">
+  					<span>Best check yourself, you're not...</span>
+				</div>
+                <button id="submitLogin" type="submit" data-loading-text="登录中..." class="btn-warning btn-large" onclick="submitLogin();">登 录</button>
+
+            </form> 
+            
+            <div class="moreSetting">
+                <input type="checkbox" id="remember"> 
+				<label class="checkbox" for="remember">记住密码</label>
+				<a href="">忘记密码？</a>
+            </div>
+            </div>
+        </div>
+
+         <!--*************************** regist div **************************-->
+        <div id="registDiv">
+            <div class="backgroundDiv"></div>
+            
+            <div class="R_Title LR_Title"></div>
+            <b class="goLogin goB"><i class="icon-circle-arrow-left"></i>去登录</b>
+            <div class="LR_Line R_Line"></div>
+            
+            <form id="registForm" class="form-horizontal" action="register.do" method="post">
+               <div class="control-group emailControl">
+                    <label class="control-label" for="inputEmail">邮箱</label>
+                    <div class="controls">
+                        <input type="text" id="emailInputR" placeholder="Email" name="registerForm.email">
+                    </div>
+                </div>
+                <div class="alert alert-error emailAlert">
+                    <span>Best check yourself, you're not...</span>
+                </div>
+				
+                <div class="control-group userNameControl">
+                    <label class="control-label">昵称</label>
+                    <div class="controls">
+                        <input type="text" id="userNameInputR" placeholder="Name" name="registerForm.name">
+                    </div>
+                </div>
+                <div class="alert alert-error userNameAlert">
+  					<span>Best check yourself, you're not...</span>
+				</div>
+				
+                <div class="control-group passwordRControl">
+                    <label class="control-label" for="inputPassword">密码</label>
+                    <div class="controls">
+                        <input type="password" id="passwordInputR" placeholder="Password" name="registerForm.password">
+                    </div>
+                </div>
+                <div class="alert alert-error passwordRAlert">
+  					<span>Best check yourself, you're not...</span>
+				</div>
+				
+				<div class="control-group passwordR2Control">
+                    <label class="control-label" for="inputPassword">确认密码</label>
+                    <div class="controls">
+                        <input type="password" id="passwordInputR2" placeholder="Password again">
+                    </div>
+                </div>
+                <div class="alert alert-error passwordR2Alert">
+  					<span>Best check yourself, you're not...</span>
+				</div>
+				
+                <div class="control-group CamadyControl">
+                    <label class="control-label">学院</label>
+                    <div class="controls">
+                        <input type="text" id="CamadyInputR" placeholder="Camady" name="registerForm.name">
+                    </div>
+                </div>
+                <div class="alert alert-error userNameAlert">
+                    <span>Best check yourself, you're not...</span>
+                </div>
+				
+				<div class="control-group">
+                    <div class="controls">
+                        <button id="submitRegister" type="submit" class="btn btn-info btn-large">确 定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--**************************- search div **************************-->
+        <div id="searchDiv">
+            <!--******************- search div's background **for opacity****-->
+            <div class="backgroundDiv"></div>
+			<img class="websiteTitleForS" src="img/websiteTitle_Search.png" />
+            <form id="searchForm" class="form-search">
+                <input type="text" class="span4 search-query">
+                <button type="submit" class="btn btn-large"><i class="icon-search"></i> 搜索</button>
+            </form>
+        </div>
+        </div>
+        
+        
+        <!--**************************info div **************************-->
+        <input type="hidden" id="isLogin" value="${sessionScope.logined }" />
+      	<input type="hidden" value="${requestScope.registered }" />
+        <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.icheck.min.js"></script>
+		<script src="js/zepto.icheck.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/homepage.js"></script>
+    </body>
+</html>

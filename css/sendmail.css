@@ -1,0 +1,45 @@
+/*------------------------------------------------------------*/
+/*--------------------- common basic module ------------------*/
+/*------------------------------------------------------------*/
+.mailContainer{
+	background-color: white;
+	border-radius: 15px;
+}
+.mailContainer h3{
+	padding: 20px 20px 10px 20px;
+}
+.objectInfo{
+	padding-left: 20px;
+	width: 60%;
+}
+.objectInfo a{
+	float: right;
+}
+.objectInfo img{
+	width:48px;
+	height: 48px;
+}
+.titleAndMail-title{
+	margin-top: 50px;
+}
+.titleAndMail-title label{
+	display: inline;
+}
+.titleAndMail-mail label{
+	display: inline;
+}
+.titleAndMail-mail textarea{
+	resize: none;
+	width:530px;
+}
+.objectInfoFooter{
+	margin-left: 40px;
+	width: 530px;
+	text-align: right;
+	margin-top: 10px;
+	padding-bottom: 40px;
+}
+#titleAndMail-title-input{
+	margin-top: 9px;
+}
+/*------------------------------------------------------------*/

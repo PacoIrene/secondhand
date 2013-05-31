@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>iSharing - 搜索结果</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
+              media="screen">
+        <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+        <link href="css/common.css" rel="stylesheet" media="screen">
+        <link href="css/group.css" rel="stylesheet" media="screen">
+    </head>
+
+    <body>
+        <!--------------------------- navigation bar -------------------------->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner navBack">
+                <div>
+                    <a class="btn btn-navbar" data-toggle="collapse"
+                       data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+                            class="icon-bar"></span> <span class="icon-bar"></span> </a> <a
+                        class="brand" href="#"><img src="img/websiteTitle.png"
+                                                class="websiteTitleInNav" /> </a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="navUl">
+                            <li class="active">
+                                <a href="#">首页</a>
+                            </li>
+                            <li>
+                                <a href="#">我的小组</a>
+                            </li>
+                            <li>
+                                <a href="#">发现小组</a>
+                            </li>
+                            <li>
+                                <a href="#">消息</a>
+                            </li>
+                        </ul>
+                        <div class="searchinfo">
+                            <ul class="nav" id="navU2">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
+                                        <li role="presentation" class="divider"></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">退出</a></li>
+                                    </ul>
+                                </li>
+                                <li><form class="form-search searchFormInNav">
+                                        <input type="text" id="inp-query" class="input-medium search-query"
+                                               placeholder="搜索你要的">
+                                        <button type="submit" class="btn">
+                                            <i class="icon-search"></i>
+                                        </button>
+                                    </form></li>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--------------------------- mailinfo page -------------------------->
+        <div id="mainWindow" class="container">
+            <div class="row-fluid">
+                <div class="groupAll">
+                    <div class="groupBasicTopic">
+                        <div  class="groupBasicTopic-head">
+                            <img src="img/Kyle.jpg" class="img-rounded groupBasicTopic-head-pic">
+                            <p class="groupBasicTopic-head-nameAndButton">
+                                <span>南方公园同乐会</span>
+                                <button class="btn btn-success" type="button">加入该小组</button>
+                            </p>
+                        </div>
+                        <div class="groupBasicTopic-basic">
+                            <p>在旅程结束N个月后，终于开始记录我的第一次美国之行，其间几欲逃避，可念及记忆力已大不如前，再不抢救，便会如同《献给阿尔吉侬的花束》里智力进入衰退期的查理·高登一般，陷入对垂暮的恐惧。简单一些，把还能够记起的事情来一篇流水帐，也好过烂在回忆里。
+                            </p>
+                            <div id="groupBasicTopic-basic-edit">
+                                <button class="btn btn-info" type="button">编辑</button>
+                            </div>
+                        </div>
+                        <div class="groupBasicTopic-topic">
+                            <div class="input-append">
+                                <input class="span6" id="appendedInputButton" type="text" placeholder="搜索话题">
+                                <button class="btn btn-info" type="button">搜索!</button>
+                            </div>
+                            <button class="btn btn-info" type="button" id="groupBasicTopic-topic-newTopic">发言</button>
+                            <table class="table topicTable">
+                                <thead>
+                                    <tr>
+                                        <th>标题</th>
+                                        <th>来自</th>
+                                        <th>回应个数</th>                  
+                                        <th>最后回应时间</th>                 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="#">Mark</a></td>
+                                        <td><a href="#">Hello!</a></td>
+                                        <td>12</td>
+                                        <td>2013-02-01 17:53</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Jason</a></td>
+                                        <td><a href="#">Fair well</a></td>
+                                        <td>113</td>
+                                        <td>2013-03-06 11:11</td>
+                                    </tr><tr>
+                                        <td><a href="#">Dery</a></td>
+                                        <td><a href="#">Tom is out</a></td>
+                                        <td>528</td>
+                                        <td>2013-04-02 09:12</td>                 
+                                    </tr><tr>
+                                        <td><a href="#">Marz</a></td>
+                                        <td><a href="#">Go to see a movie</a></td>
+                                        <td>2</td>
+                                        <td>2013-05-12 18:00</td>                  
+                                    </tr><tr>
+                                        <td><a href="#">Henry</a></td>
+                                        <td><a href="#">Bad game</a></td>
+                                        <td>33</td>
+                                        <td>2013-05-13 20:11</td>                  
+                                    </tr><tr>
+                                        <td><a href="#">Olivia</a></td>
+                                        <td><a href="#">Come to test</a></td>
+                                        <td>739</td>
+                                        <td>2013-05-13 20:12</td>                  
+                                    </tr><tr>
+                                        <td><a href="#">Cia Cia</a></td>
+                                        <td><a href="#">A new album</a></td>
+                                        <td>9</td>
+                                        <td>2013-05-13 21:12</td>                  
+                                    </tr><tr>
+                                        <td><a href="#">Icy</a></td>
+                                        <td><a href="#">About Cherry</a></td>
+                                        <td>74</td>
+                                        <td>2013-05-14 22:22</td>                  
+                                    </tr><tr>
+                                        <td><a href="#">Raul</a></td>
+                                        <td><a href="#">Get known</a></td>
+                                        <td>1142</td>
+                                        <td>2013-05-15 00:12</td>                  
+                                    </tr><tr>
+                                        <td><a href="#">Chris</a></td>
+                                        <td><a href="#">No direction</a></td>
+                                        <td>132</td>
+                                        <td>2013-05-20 23:20</td>                  
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="btn" id="groupBasicTopic-topic-more" type="button">加载更多</button>
+
+                        </div>
+                    </div>
+                    <div class="groupPerson">
+                        <div class="groupPerson-leader">
+                            <p>组长</p>
+                            <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
+                        </div>
+                        <div class="groupPerson-grouper">
+                            <p>小组成员</p>
+                            <div class="groupPerson-grouperList">
+                                <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Kyle.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Kyle.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
+                                <a href="#"><img src="img/Kyle.jpg" class="img-rounded"></a>
+                            </div>
+                        </div>
+                        <button class="btn" id="groupPerson-grouperList-more" type="button">加载更多</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/common.js"></script>
+    </body>
+</html>
