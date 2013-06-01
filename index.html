@@ -85,11 +85,11 @@
             <div class="LR_Line L_Line"></div>
 
 			<div class="loginFormDiv">
-            <form id="loginForm" class="form-horizontal" action="login.do" method="post">
+            <form id="loginForm" class="form-horizontal" action="source/action/login.php" method="POST">
             
             	<div class="control-group entranceControl">
                 	<i id="userIconLogin" class="icon-user icon-large"></i>
-                	<input id="entrance" type="text" placeholder="邮箱"  /><br/>
+                	<input id="entrance" type="text" name="username" placeholder="邮箱"  /><br/>
                 </div>
                 <div class="alert alert-error entranceAlert">
   					<span>Best check yourself, you're not...</span>
@@ -97,12 +97,12 @@
 				
 				<div class="control-group passwordControl">
                 	<i id="pwdIconLogin" class="icon-key icon-large"></i>
-                	<input id="password" type="password" placeholder="密码" /><br/>
+                	<input id="password" type="password" name="password" placeholder="密码" /><br/>
                 </div>
                 <div class="alert alert-error passwordAlert">
   					<span>Best check yourself, you're not...</span>
 				</div>
-                <button id="submitLogin" type="submit" data-loading-text="登录中..." class="btn-warning btn-large" onclick="submitLogin();">登 录</button>
+                <button id="submitLogin" type="submit" class="btn-warning btn-large">登 录</button>
 
             </form> 
             
@@ -122,11 +122,11 @@
             <b class="goLogin goB"><i class="icon-circle-arrow-left"></i>去登录</b>
             <div class="LR_Line R_Line"></div>
             
-            <form id="registForm" class="form-horizontal" action="register.do" method="post">
+            <form id="registForm" class="form-horizontal" action="source/action/loginup.php" method="POST">
                <div class="control-group emailControl">
                     <label class="control-label" for="inputEmail">邮箱</label>
                     <div class="controls">
-                        <input type="text" id="emailInputR" placeholder="Email" name="registerForm.email">
+                        <input type="text" id="emailInputR" placeholder="Email" name="registerFormemail">
                     </div>
                 </div>
                 <div class="alert alert-error emailAlert">
@@ -136,7 +136,7 @@
                 <div class="control-group userNameControl">
                     <label class="control-label">昵称</label>
                     <div class="controls">
-                        <input type="text" id="userNameInputR" placeholder="Name" name="registerForm.name">
+                        <input type="text" id="userNameInputR" placeholder="Name" name="registerFormname">
                     </div>
                 </div>
                 <div class="alert alert-error userNameAlert">
@@ -146,7 +146,7 @@
                 <div class="control-group passwordRControl">
                     <label class="control-label" for="inputPassword">密码</label>
                     <div class="controls">
-                        <input type="password" id="passwordInputR" placeholder="Password" name="registerForm.password">
+                        <input type="password" id="passwordInputR" placeholder="Password" name="registerFormpassword">
                     </div>
                 </div>
                 <div class="alert alert-error passwordRAlert">
@@ -163,12 +163,12 @@
   					<span>Best check yourself, you're not...</span>
 				</div>
 				
-                <div class="control-group CamadyControl">
+<!--                <div class="control-group CamadyControl">
                     <label class="control-label">学院</label>
                     <div class="controls">
-                        <input type="text" id="CamadyInputR" placeholder="Camady" name="registerForm.name">
+                        <input type="text" id="CamadyInputR" placeholder="Camady" name="registerFormcamady">
                     </div>
-                </div>
+                </div>-->
                 <div class="alert alert-error userNameAlert">
                     <span>Best check yourself, you're not...</span>
                 </div>

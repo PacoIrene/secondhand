@@ -59,47 +59,47 @@ $(document).ready(function(){
     //--------------------------------------------------------------------------
     // Login module
     //--------------------------------------------------------------------------
-    $("#submitLogin").click(function(){
-
-		$("#entrance").blur();
-		$("#password").blur();
-		
-    	if($(".entranceControl").attr("class").indexOf("success") < 0
-    			|| $(".passwordControl").attr("class").indexOf("success") < 0 ){
-    		newMsgDiv("#dd6a45","亲，登录信息没填全哦。");
-    	}else {
-    		$("#submitLogin").button('loading');
-    		$.ajax({
-	    		type:"POST",
-	    		url:"login.do",
-	    		dataType:"text",
-	    		data:"entrance="+$("#entrance").val()+"&password="+$("#password").val(),
-	    		success:function(data)
-	    		{
-	    			if(data == "success")
-	    			{
-	    				$("#headNav").slideDown();
-	        		    $("#loginDiv").animate({"right":"-50%"},"slow");
-	        		    $("#searchDiv").animate({"right":"15%"},"slow");
-	        		    newMsgDiv("#61c4b8","登录成功，欢迎来到爱享^——^");
-	    			}
-	    			else{
-	    				$("#submitLogin").button('reset');
-	    				newMsgDiv("#dd6a45","登录失败>///<用户名、密码可能填错了哦");
-	    			}
-	    		},
-	    		error:function()
-	    		{
-	    			$("#submitLogin").button('reset');
-	    			newMsgDiv("#dd6a45","登录失败>///<网络出问题了呢。");
-	    		}
-	    		
-	    	});
-    	}
-    	
-  
-      return false;
-    });
+//    $("#submitLogin").click(function(){
+//
+//		$("#entrance").blur();
+//		$("#password").blur();
+//		
+//    	if($(".entranceControl").attr("class").indexOf("success") < 0
+//    			|| $(".passwordControl").attr("class").indexOf("success") < 0 ){
+//    		newMsgDiv("#dd6a45","亲，登录信息没填全哦。");
+//    	}else {
+//    		$("#submitLogin").button('loading');
+//    		$.ajax({
+//	    		type:"POST",
+//	    		url:"login.do",
+//	    		dataType:"text",
+//	    		data:"entrance="+$("#entrance").val()+"&password="+$("#password").val(),
+//	    		success:function(data)
+//	    		{
+//	    			if(data == "success")
+//	    			{
+//	    				$("#headNav").slideDown();
+//	        		    $("#loginDiv").animate({"right":"-50%"},"slow");
+//	        		    $("#searchDiv").animate({"right":"15%"},"slow");
+//	        		    newMsgDiv("#61c4b8","登录成功，欢迎来到爱享^——^");
+//	    			}
+//	    			else{
+//	    				$("#submitLogin").button('reset');
+//	    				newMsgDiv("#dd6a45","登录失败>///<用户名、密码可能填错了哦");
+//	    			}
+//	    		},
+//	    		error:function()
+//	    		{
+//	    			$("#submitLogin").button('reset');
+//	    			newMsgDiv("#dd6a45","登录失败>///<网络出问题了呢。");
+//	    		}
+//	    		
+//	    	});
+//    	}
+//    	
+//  
+//      return false;
+//    });
     
     //-----------------------------------------------------------------------
     //	login form validation
@@ -109,11 +109,11 @@ $(document).ready(function(){
     	if(entrance == null || entrance.trim() == "")
     	{
     		$(".entranceControl").addClass("error");
-    		$(".entranceAlert span").text("学工号/邮箱怎么是空的呢.");
+    		$(".entranceAlert span").text("邮箱怎么是空的呢.");
     		$(".entranceAlert").slideDown();
     	}else if(!CheckIdFormat(entrance) && !CheckEmailFormat(entrance)){
     		$(".entranceControl").addClass("error");
-    		$(".entranceAlert span").text("亲，看看学工号/邮箱输对了没.");
+    		$(".entranceAlert span").text("亲，看看邮箱输对了没.");
     		$(".entranceAlert").slideDown();
     	}else{
     		$(".entranceControl").removeClass("error");
@@ -177,7 +177,7 @@ $(document).ready(function(){
     		$(".userIdControl").addClass("error");
     		$(".userIdAlert").removeClass("alert-warning");
     		$(".userIdAlert").addClass("alert-error");
-    		$(".userIdAlert span").text("学工号/邮箱怎么是空的呢.");
+    		$(".userIdAlert span").text("邮箱怎么是空的呢.");
     		$(".userIdAlert").slideDown();
     		return ;
     	}
@@ -248,42 +248,42 @@ $(document).ready(function(){
     	
     	if(CheckEmailFormat($(this).val()))
     	{
-    		$.ajax({
-    			type: "POST",
-    			url: "ajaxVerifyEmail.do",
-    			dataType: "text",
-    			data: "email="+$(this).val(),
-    			success: function(data){
-    				if(data == "exsit"){
-    					$(".emailControl").removeClass("success");
-    		    		$(".emailControl").removeClass("warning");
-    					$(".emailControl").addClass("error");
-    		    		$(".emailAlert").removeClass("alert-warning");
-    		    		$(".emailAlert").addClass("alert-error");
-    		    		$(".emailAlert span").text("该邮箱已经被注册过哦.");
-    		    		$(".emailAlert").slideDown();
-    				}
-    				else{
-    					$(".emailControl").removeClass("error");
-    		    		$(".emailControl").removeClass("warning");
-    					$(".emailControl").addClass("success");
-    		    		$(".emailAlert").removeClass("alert-error");
-    		    		$(".emailAlert").removeClass("alert-warning");
-    		    		//$(".emailAlert").addClass("alert-info");
-    		    		//$(".emailAlert span").text("这个邮箱很OK.");
-    		    		$(".emailAlert").slideUp();
-    				}
-    			},
-    			error: function(){
-    				$(".emailControl").removeClass("error");
-		    		$(".emailControl").removeClass("success");
-					$(".emailControl").addClass("warning");
-		    		$(".emailAlert").removeClass("alert-error");
-		    		$(".emailAlert").addClass("alert-warning");
-		    		$(".emailAlert span").text("额，网络出毛病了。.");
-		    		$(".emailAlert").slideDown();
-    			}
-    		});
+//    		$.ajax({
+//    			type: "POST",
+//    			url: "ajaxVerifyEmail.do",
+//    			dataType: "text",
+//    			data: "email="+$(this).val(),
+//    			success: function(data){
+//    				if(data == "exsit"){
+//    					$(".emailControl").removeClass("success");
+//    		    		$(".emailControl").removeClass("warning");
+//    					$(".emailControl").addClass("error");
+//    		    		$(".emailAlert").removeClass("alert-warning");
+//    		    		$(".emailAlert").addClass("alert-error");
+//    		    		$(".emailAlert span").text("该邮箱已经被注册过哦.");
+//    		    		$(".emailAlert").slideDown();
+//    				}
+//    				else{
+//    					$(".emailControl").removeClass("error");
+//    		    		$(".emailControl").removeClass("warning");
+//    					$(".emailControl").addClass("success");
+//    		    		$(".emailAlert").removeClass("alert-error");
+//    		    		$(".emailAlert").removeClass("alert-warning");
+//    		    		//$(".emailAlert").addClass("alert-info");
+//    		    		//$(".emailAlert span").text("这个邮箱很OK.");
+//    		    		$(".emailAlert").slideUp();
+//    				}
+//    			},
+//    			error: function(){
+//    				$(".emailControl").removeClass("error");
+//		    		$(".emailControl").removeClass("success");
+//					$(".emailControl").addClass("warning");
+//		    		$(".emailAlert").removeClass("alert-error");
+//		    		$(".emailAlert").addClass("alert-warning");
+//		    		$(".emailAlert span").text("额，网络出毛病了。.");
+//		    		$(".emailAlert").slideDown();
+//    			}
+//    		});
     	}
     	else{
     		$(".emailControl").removeClass("success");
