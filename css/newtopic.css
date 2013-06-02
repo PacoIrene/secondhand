@@ -23,7 +23,8 @@
 }
 #topicInput-area-input{
 	resize:none;
-	width: 85%;
+	width: 84%;
+        margin-left: 10px;
 }
 .topicInput-href,.topicInput-button{
 	text-align: right;

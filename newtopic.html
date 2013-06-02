@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>二手</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -13,6 +13,25 @@
     </head>
 
     <body>
+        <?php
+        session_start();
+        require 'source/GroupOperation.php';
+        $username=$_SESSION['UserName'];
+        $userid=$_SESSION['UserId'];
+        $groupid=$_GET['groupid'];
+        if($groupid==null||$userid==null)
+            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
+        else{
+        
+        $groupopera=new GroupOperation();;
+        $groupopera->Init('localhost', 'root', 'root');
+        $group=$groupopera->getgroup($groupid);
+        $decide=$groupopera->isin($userid,$group->id);
+        if(!$decide){
+        echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
+            }
+        }
+        ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner navBack">
@@ -40,7 +59,7 @@
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php echo $username;?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
@@ -70,35 +89,46 @@
                     <div class="topicInput">
                         <h3>新建小组话题</h3>
                         <div class="topicInputAll">
-                            <div class="topicInput-title">
-                                <label for="topicInput-title-input">标题:</label>
-                                <input id="topicInput-title-input" class="input-xxlarge" maxlength="20" type="text" name="topicInput-title-input" placeholder="写入你的标题">
-                            </div>
-                            <div class="topicInput-area">
-                                <label for="topicInput-area-input" style="vertical-align:top;">内容:</label>
-                                <textarea id="topicInput-area-input" name="titleAndMail-mail-input" rows="15"></textarea>
-                            </div>
-                            <div class="topicInput-href">
-                                <a href="#">添加图片</a>
-                            </div>
-                            <div class="topicInput-button">
-                                <button class="btn btn-success" type="button">新建话题</button>
-                            </div>
+                            <form action="source/newtopic.php" method="POST">
+                                <div class="topicInput-title">
+                                    <label for="topicInput-title-input">标题:</label>
+                                    <?php echo "<input type='hidden' name='hidden_groupid' id='hidden_groupid' value='"."$groupid"."'/>";?>
+                                
+                                    <input id="topicInput-title-input" class="input-xxlarge" maxlength="20" type="text" name="topicInput-title-input" placeholder="写入你的标题" >
+                                </div>
+                                <div class="topicInput-area">
+                                    <label for="topicInput-area-input" style="vertical-align:top;">内容:</label>
+                                    <textarea id="topicInput-area-input" name="titleAndMail-mail-input" rows="15"></textarea>
+                                </div>
+                                <div class="topicInput-href">
+                                    <a href="#">添加图片</a>
+                                </div>
+                                <div class="topicInput-button">
+                                    <button class="btn btn-success" type="submit">新建话题</button>
+                                </div>
+                            </form>
                         </div>                        
                     </div>
                 </div>
                 <div class="span4 aside">
                     <div class="groupInfo">
                         <div class="groupInfo-Pic">
-                            <a href="#"><img src="img/Kyle.jpg"></a>
+                            <?php 
+                            echo "<a href='group.html?groupid="."$groupid"."'><img src='"."$group->photourl"."'></a>";
+                            ?>
                         </div>
                         <div class="groupInfo-content">
                             <div class="groupInfo-title">
-                                <p><a href="#">南方公园同乐会</a>
+                                 
+                                <p><?php 
+                            echo "<a href='group.html?groupid="."$groupid"."'>"."$group->name"."</a>";
+                            ?>
                                 </p>
                             </div>
                             <div class="groupInfo-href">
-                                <a href="#">回到小组</a>
+                                <?php 
+                            echo "<a href='group.html?groupid="."$groupid"."'>回到小组</a>";
+                            ?>
                             </div>
                             <div class="groupInfo-href">
                                 <a href="#">查看全部话题</a>

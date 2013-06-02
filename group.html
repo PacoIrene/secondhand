@@ -105,7 +105,10 @@
                             <p><?php echo $group->description;?>
                             </p>
                             <div id="groupBasicTopic-basic-edit">
-                                <button class="btn btn-info" type="button">编辑</button>
+                                <?php 
+                                if($decide)
+                                echo "<button class='btn btn-info' type='button'>编辑</button>";
+                                ?>
                             </div>
                         </div>
                         <div class="groupBasicTopic-topic">
@@ -113,7 +116,10 @@
                                 <input class="span6" id="appendedInputButton" type="text" placeholder="搜索话题">
                                 <button class="btn btn-info" type="button">搜索!</button>
                             </div>
-                            <button class="btn btn-info" type="button" id="groupBasicTopic-topic-newTopic">发言</button>
+                            <?php 
+                                if($decide)
+                                echo "<a  href='newtopic.html?groupid="."$group->id"."' class='btn btn-info' type='button' id='groupBasicTopic-topic-newTopic'>发言</a>";
+                                ?>
                             <table class="table topicTable">
                                 <thead>
                                     <tr>

@@ -42,7 +42,7 @@ class GroupOperation {
             die("Could not query the sql");
         }
         else{
-            $sqll="SELECT id FROM secondhand.group ORDER BY id DESC";
+            $sqll="SELECT id FROM secondhand.group WHERE name='$group->name' AND description='$group->description' AND photourl='$group->photourl' AND class='$group->class'";
             $result=  mysql_query($sqll,$this->conn);
             if(!$result){
                 die("Could not query the sql");
