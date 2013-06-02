@@ -1,16 +1,19 @@
 <?php
-$allgrouptopic=$groupopera->getalltopicforgroup($groupid);
-                                    $num=mysql_num_rows($allgrouptopic);
-                                    for($i=0;$i<$num;$i=$i+1){
-                                    $rowhere=  mysql_fetch_array($allgrouptopic);
-                                    $userhere=$useropera->getuser($rowhere['userid']);
-                                    echo "<tr>";
-                                    echo "<a href='personal.html?userid=".$userhere->id."'>".$userhere->name."</a>";
-                                    echo "<a href='topic.html?topicid=".$rowhere->id."'>".$rowhere->name."</a>";
-                                    echo "<td>".$rowhere["replynum"]."</td>";
-                                    echo "<td>".$rowhere["updatetime"]."</td>";
-                                    echo "</tr>";
+require 'GroupOperation.php';
+        $groupopera=new GroupOperation();
+        $groupopera->Init('localhost', 'root', 'root');
+$usersgroup=$groupopera->getusersgroup(3);
+                        $num=mysql_num_rows($usersgroup);
+                        if($num>10)
+                                        $total=10;
+                                     else
+                                        $total=$num;
+
+                        for($i=0;$i<$total;$i=$i+1){
+                                    $rowhere=  mysql_fetch_array($usersgroup);
+                                    $grouphere=$groupopera->getgroup($rowhere['groupid']);
+                                    echo "<dl class='groupList-li'><dt>";
+                                    echo "<a href='group.html?groupid=".$grouphere->id."'><img src='".$grouphere->photourl."' class='img-rounded'></a></dt><dd>";
+                                    echo "<a href='group.html?groupid=".$grouphere->id."'>".$grouphere->name."</a></dd></dl>";
                                     }
-                                    $groupopera->close();
-                                    $useropera->close();
                                 ?>

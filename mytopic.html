@@ -19,15 +19,7 @@
         require 'source/UserOperation.php';
         $username=$_SESSION['UserName'];
         $userid=$_SESSION['UserId'];
-        $groupid=$_GET['groupid'];
-        if($groupid==null||$userid==null)
-            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
-        else{
-        $useropera=new UserOperation();
-        $useropera->Init('localhost', 'root', 'root');
-        $groupopera=new GroupOperation();;
-        $groupopera->Init('localhost', 'root', 'root');
-        $group=$groupopera->getgroup($groupid);
+
         }
         ?>
         <!--------------------------- navigation bar -------------------------->
@@ -87,13 +79,13 @@
 		<div class="messagesDiv"></div>
         <!--------------------------- mailinfo page -------------------------->
         <div id="mainWindow" class="container-fluid">
-            <?php echo "<input type='hidden' name='"."$groupid"."' id='hidden_groupid'/>";
+            <?php 
                                 echo "<input type='hidden' name='"."$userid"."' id='hidden_userid'/>";
                                 echo "<input type='hidden' name='1' id='hidden_pagenum'/>";?>
             <div class="row-fluid">
                 <div class="span8 content">
                     <div class="topicList">
-                        <h3>全部小组话题</h3>
+                        <h3>我发起的话题</h3>
                         <table class="table topicTable">
                                 <thead>
                                     <tr>
@@ -104,38 +96,17 @@
                                     </tr>
                                 </thead>
                                 <tbody id="topicTableBody">
-                                    <?php
-                                    $allgrouptopic=$groupopera->getalltopicforgroup($groupid);
-                                    $num=mysql_num_rows($allgrouptopic);
-                                    if($num>10)
-                                        $total=10;
-                                     else
-                                        $total=$num;
-                                    for($i=0;$i<$total;$i=$i+1){
-                                    $rowhere=  mysql_fetch_array($allgrouptopic);
-                                    $userhere=$useropera->getuser($rowhere['userid']);
-                                     echo "<tr>";
-                                     echo "<td><a href='singletopic.html?topicid=".$rowhere["id"]."'>".$rowhere["name"]."</a></td>";
-                                    echo "<td><a href='personal.html?userid=".$userhere->id."'>".$userhere->name."</a></td>";
-                                    
-                                    echo "<td>".$rowhere["replynum"]."</td>";
-                                    echo "<td>".$rowhere["updatetime"]."</td>";
-                                    echo "</tr>";
-                                    }
-                                    ?>
+                                   
                                 </tbody>
                             </table>
-                        <?php
-                            if($num>10)
-                                echo"<button class='btn' id='topicMore' type='button' data-loading-text='努力加载中......'>加载更多</button>";
-                            ?>
-
+                        <button class='btn' id='topicMore' type='button' data-loading-text='努力加载中......'>加载更多</button>;
+                       
                     </div> 
                 </div>
                 <div class="span4 aside">
                     <div class="groupLink">
                         <div class="groupLink-div"> <?php 
-                            echo "<a href='allgrouptopic.html?groupid="."$groupid"."'>>查看全部话题</a>";
+                            echo "<a href='allgrouptopic.html'>>查看全部话题</a>";
                             ?>
                         </div>
                         <div class="groupLink-div"><a href="mytopic.html">>我发起的话题</a></div>
@@ -148,6 +119,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
-        <script src="js/allgrouptopic.js"></script>
+        <script src="js/mytopic.js"></script>
     </body>
 </html>

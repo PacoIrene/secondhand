@@ -12,7 +12,7 @@
  */
 class Group {
     //put your code here
-    private $id;
+    public $id;
     private $name;
     private $description;
     private $photourl;

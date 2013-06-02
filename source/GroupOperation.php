@@ -32,9 +32,18 @@ class GroupOperation {
         if($row==null)
             echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
         $this->group=new Group($row["name"],$row["description"],$row["photourl"],$row["class"]);
-        $this->group->id=$row["id"];
+        $this->group->id=$groupid;
         return $this->group;
     }
+    public function getusersgroup($userid){
+        $sql="SELECT groupid FROM secondhand.usergroup WHERE userid='$userid'";
+        $result=  mysql_query($sql, $this->conn);
+        if(!$result){
+            die('Could not query the sql');
+        }
+        return $result;
+    }
+
     public function getalltopicforgroup($groupid){
         $sql="SELECT * FROM secondhand.topic WHERE groupid='$groupid' ORDER BY updatetimE DESC";
         $result=  mysql_query($sql, $this->conn);
