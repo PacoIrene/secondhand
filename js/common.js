@@ -2,8 +2,8 @@ $(document).ready(function(){
 	$('.drop5').click(function(){
 		$(this).dropdown();
 	});
-}
-function newMsgDiv(color, content) {
+});
+function newMsgDiv(color,content){
 	var newMsgDiv = $(".templateMsgDiv").clone(true).removeClass("templateMsgDiv");
 	newMsgDiv.find("i").css({"color":color});
 	newMsgDiv.find("p").text(content);

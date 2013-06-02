@@ -35,6 +35,7 @@
 }
 .topicTable a{
 	text-decoration: none;
+        color: #259;
 }
 .topicTable a:hover{
 	background-color: #3377AA;

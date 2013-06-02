@@ -91,9 +91,14 @@
 
             </div>
         </div>
+        <div class="messageDiv templateMsgDiv">
+			<i class="icon icon-circle"></i>
+			<p>恭喜您中了5000万超级大奖</p>
+		</div>
+		<div class="messagesDiv"></div>
         <!--------------------------- mailinfo page -------------------------->
         <?php echo "<input type='hidden' name='"."$userid"."' id='hidden_userid'/>";
-          echo "<input type='hidden' name='"."$topic->id"."' id='hidden_topicid'/>";?>
+          echo "<input type='hidden' name='"."$topicid"."' id='hidden_topicid'/>";?>
         <div id="mainWindow" class="container-fluid">
             <div class="row-fluid">
                 <div class="span8 content">
@@ -136,6 +141,7 @@
                         echo "</p></div></div></div>";
                         }
                         $useropera->close();
+                        $topicreplyopera->close();
                         ?>
                         </div>
                         <div class="addReply">
@@ -190,7 +196,9 @@
                             ?>
                             </div>
                             <div class="groupInfo-href">
-                                <a href="#">查看全部话题</a>
+                                 <?php 
+                            echo "<a href='allgrouptopic.html?groupid="."$signgroup->id"."'>查看全部话题</a>";
+                            ?>
                             </div>
                         </div>                        
                     </div>                   

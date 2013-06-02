@@ -30,7 +30,7 @@ class TopicOperation {
             die('Could not query the sql');
         }
         $row=mysql_fetch_array($result);
-        $this->topic=new Topic($row["id"],$row["name"],$row["content"],$row["time"],$row["replynum"],$row["userid"],$row["groupid"]);
+        $this->topic=new Topic($row["name"],$row["content"],$row["time"],$row["replynum"],$row["userid"],$row["groupid"],$row["updatetime"]);
         return $this->topic;
     }
 
@@ -50,7 +50,7 @@ class TopicOperation {
     }
 
     public function addtopic($topic){
-        $sql="INSERT INTO secondhand.topic(name,content,time,replynum,userid,groupid) VALUES('$topic->name','$topic->content','$topic->time','$topic->replynum','$topic->userid','$topic->groupid')";
+        $sql="INSERT INTO secondhand.topic(name,content,time,replynum,userid,groupid,updatetime) VALUES('$topic->name','$topic->content','$topic->time','$topic->replynum','$topic->userid','$topic->groupid','$topic->updatetime')";
         $result=  mysql_query($sql,$this->conn);
         if(!$result){
             die("Could not query the sql");

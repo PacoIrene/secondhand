@@ -35,13 +35,13 @@ $(document).ready(function(){
                        var num=$("#replyNumSpan").text();
                        $("#replyNumSpan").text(String(Number(num)+1));
                     }else{ 
-                        alert("网络环境异常");
+                        newMsgDiv("#dd6a45","网络环境异常.");
                         return false; 
                     } 
                 } ,
                 error:function()
                 {
-                    alert("网络环境异常");
+                   newMsgDiv("#dd6a45","网络环境异常.");
                 }
             }); 
            }

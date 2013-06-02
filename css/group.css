@@ -1,10 +1,8 @@
 /*------------------------------------------------------------*/
 /*--------------------- common basic module ------------------*/
 /*------------------------------------------------------------*/
-.groupAll{
+.row-fluid{
 	background-color: white;
-	width:auto;
-	margin: 0 auto;
 	border-radius: 15px;
 }
 .groupBasicTopic-head{
@@ -28,7 +26,7 @@
 .groupBasicTopic-basic{
 	background-color: #F0F6F3;
 	margin: 0 40px 40px 40px;
-	width: 50%;
+	width:80%;
 }
 .groupBasicTopic-basic p{
 	padding: 20px 20px 10px 20px;
@@ -45,7 +43,7 @@
 }
 .groupBasicTopic-topic{
 	margin: 0 40px 40px 40px;
-	width: 50%;
+	width: 80%;
 }
 .topicTable{
 	margin-bottom: 0;
@@ -64,7 +62,7 @@
 	color: white;
 }
 #groupBasicTopic-topic-newTopic{
-	margin-left: 237.5px;
+	margin-left: 267.5px;
 	margin-top: -5px;
 }
 #groupBasicTopic-topic-more{
@@ -73,7 +71,7 @@
 }
 .groupPerson{
 	float: right;
-	margin-top: -752px;
+	margin-top: 100px;
 	width:420px;
 	margin-right: 20px;
 }
@@ -83,11 +81,14 @@
 }
 .groupPerson-grouper{
 	margin-top: 10px;
+        width: 80%;
+        margin-left: 60px;
 }
 .groupPerson-grouperList img{
 	margin: 0 10px 20px 0;
 }
 #groupPerson-grouperList-more{
-	width: 90%;
+	width: 74%;
+        margin-left: 60px;
 }
 /*------------------------------------------------------------*/

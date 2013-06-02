@@ -25,7 +25,7 @@ if (!$result) {
     } else {
         $row1 = mysql_fetch_array($result1);
         $newnum = $row1["replynum"] + 1;
-        $sql2 = "UPDATE secondhand.topic SET replynum='$newnum' WHERE id='$t'";
+        $sql2 = "UPDATE secondhand.topic SET replynum='$newnum',updatetime='$time' WHERE id='$t'";
         $result2 = mysql_query($sql2, $conn);
         if (!$result1) {
             die("Could not query the sql");

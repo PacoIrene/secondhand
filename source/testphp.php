@@ -1,15 +1,16 @@
 <?php
-$num=mysql_num_rows($topicreply);
-                        for($i=0;$i<$num;$i+=$i+1){
-                        $userhere=$useropera->getuser($topicreply['userid']);
-                        echo "<div class='topicInfo-reply-single'><div class='topInfo-Pic'>";
-                        echo "<a href='personal.html?userid=".$userhere->id."'><img src='".$userhere->photourl."'></a></div>";
-                        echo "<div class='topInfo-content'><div class='topInfo-title'>";
-                        echo "<a href='personal.html?userid=".$userhere->id."'>".$userhere->name."</a>";
-                        echo "<span>(".$topicreply['time'].")</span>";
-                        echo "</div><div class='topInfo-info';><p>";
-                        echo $topicreply["content"];
-                        echo "</p></div></div></div>";
-                        }
-                        $useropera->close();
+$allgrouptopic=$groupopera->getalltopicforgroup($groupid);
+                                    $num=mysql_num_rows($allgrouptopic);
+                                    for($i=0;$i<$num;$i=$i+1){
+                                    $rowhere=  mysql_fetch_array($allgrouptopic);
+                                    $userhere=$useropera->getuser($rowhere['userid']);
+                                    echo "<tr>";
+                                    echo "<a href='personal.html?userid=".$userhere->id."'>".$userhere->name."</a>";
+                                    echo "<a href='topic.html?topicid=".$rowhere->id."'>".$rowhere->name."</a>";
+                                    echo "<td>".$rowhere["replynum"]."</td>";
+                                    echo "<td>".$rowhere["updatetime"]."</td>";
+                                    echo "</tr>";
+                                    }
+                                    $groupopera->close();
+                                    $useropera->close();
                                 ?>

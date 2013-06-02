@@ -14,7 +14,7 @@ $replynum=0;
 $userid = $_SESSION['UserId'];
 $groupid=$_POST["hidden_groupid"];
 if ($userid) {
-    $topic=new Topic($name, $content, $time, $replynum, $userid, $groupid);
+    $topic=new Topic($name, $content, $time, $replynum, $userid, $groupid,$time);
     $topicopera=new TopicOperation();
     $topicopera->Init('localhost', 'root', 'root');
     $topicid=$topicopera->addtopic($topic);

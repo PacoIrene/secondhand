@@ -19,14 +19,15 @@ class Topic {
     private $replynum;
     private $userid;
     private $groupid;
-    function __construct($id,$name,$content,$time,$replynum,$userid,$groupid) {
-        $this->id=$id;
+    private $updatetime;
+    function __construct($name,$content,$time,$replynum,$userid,$groupid,$updatetime) {
         $this->name=$name;
         $this->content=$content;
         $this->time=$time;
         $this->replynum=$replynum;
         $this->userid=$userid;
         $this->groupid=$groupid;
+        $this->updatetime=$updatetime;
     }
     public function __get($name) {
         return $this->$name;

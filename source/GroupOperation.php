@@ -35,6 +35,23 @@ class GroupOperation {
         $this->group->id=$row["id"];
         return $this->group;
     }
+    public function getalltopicforgroup($groupid){
+        $sql="SELECT * FROM secondhand.topic WHERE groupid='$groupid' ORDER BY updatetimE DESC";
+        $result=  mysql_query($sql, $this->conn);
+        if(!$result){
+            die('Could not query the sql');
+        }
+        return $result;
+    }
+    public function getalluseringroup($groupid){
+        $sql="SELECT userid FROM secondhand.usergroup WHERE groupid='$groupid'";
+        $result=  mysql_query($sql, $this->conn);
+        if(!$result){
+            die('Could not query the sql');
+        }
+        return $result;
+    }
+
     public function addgroup($group){
         $sql="INSERT INTO secondhand.group(name,description,photourl,class) VALUES('$group->name','$group->description','$group->photourl','$group->class')";
         $result=  mysql_query($sql,$this->conn);
