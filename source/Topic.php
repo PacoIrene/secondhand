@@ -19,7 +19,8 @@ class Topic {
     private $replynum;
     private $userid;
     private $groupid;
-    function __construct($name,$content,$time,$replynum,$userid,$groupid) {
+    function __construct($id,$name,$content,$time,$replynum,$userid,$groupid) {
+        $this->id=$id;
         $this->name=$name;
         $this->content=$content;
         $this->time=$time;

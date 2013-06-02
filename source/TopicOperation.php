@@ -30,8 +30,7 @@ class TopicOperation {
             die('Could not query the sql');
         }
         $row=mysql_fetch_array($result);
-        $this->topic=new Topic($row["name"],$row["content"],$row["time"],$row["replynum"],$row["userid"],$row["groupid"]);
-        $this->topic->id=$row["id"];
+        $this->topic=new Topic($row["id"],$row["name"],$row["content"],$row["time"],$row["replynum"],$row["userid"],$row["groupid"]);
         return $this->topic;
     }
     public function getingroup($topicid){

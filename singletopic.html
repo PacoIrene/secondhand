@@ -88,6 +88,8 @@
             </div>
         </div>
         <!--------------------------- mailinfo page -------------------------->
+        <?php echo "<input type='hidden' name='"."$userid"."' id='hidden_userid'/>";
+          echo "<input type='hidden' name='"."$topic->id"."' id='hidden_topicid'/>";?>
         <div id="mainWindow" class="container-fluid">
             <div class="row-fluid">
                 <div class="span8 content">
@@ -159,7 +161,7 @@
                             <div class="topInfo-Pic">
                                 <?php 
                                 if($isingroup)
-                                    echo "<a href='personal.html?userid="."$userid"."'><img src='"."$user->photourl"."'></a>";
+                                    echo "<a href='personal.html?userid="."$userid"."'><img id='userPhoto' src='"."$user->photourl"."'></a>";
                             ?>
                             </div>
                             <div class="topInfo-content">
@@ -172,7 +174,7 @@
                             <div class="replyButton">
                                 <?php
                                 if($isingroup)
-                                echo "<button class='btn btn-success' type='button'>回应</button>";
+                                echo "<button class='btn btn-success' type='button' id='addcommentfortopic'>回应</button>";
                                 ?>
                                 
                             </div>
@@ -209,5 +211,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
+        <script src="js/singletopic.js"></script>
     </body>
 </html>
