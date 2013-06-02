@@ -10,7 +10,7 @@
  *
  * @author chuzhenyang
  */
-require '../DOC/User.php';
+require 'User.php';
 class UserOperation {
     //put your code here
     private $conn;

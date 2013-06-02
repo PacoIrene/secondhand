@@ -95,7 +95,8 @@
                             <div class="thingInput-href">
                                 <label>图标:</label>
                                 <img src="img/logo.png" class="img-rounded">
-                                <button class="btn" type="button">添加图标</button>
+                                <input type="file" style="display:  none;" id="upload" name="uploadpic" accept="image/*"/>
+                                <a class="btn" href="javascript:document.getElementById('upload').click();">添加图标</a>
                             </div>
                             <div class="thingInput-button">
                                 <button class="btn btn-success" type="button">确认创建</button>

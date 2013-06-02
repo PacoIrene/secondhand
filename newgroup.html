@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>新建小组</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -40,7 +40,7 @@
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php session_start(); echo $_SESSION['UserName'];?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
@@ -69,10 +69,11 @@
                 <div class="span8 content">
                     <h3>创建小组</h3>
                     <div class="groupInfoPart">
-                        <form class="groupInfoPart-form">
+                        <form class="groupInfoPart-form" action="source/action/newgroup.php" method="POST">
                             <div class="groupInfoPart-title">
-                                <label for="groupInfoPart-title-input" style="vertical-align:middle;">标题：</label>
+                                <label for="groupInfoPart-title-input" style="vertical-align:middle;">标题：</label>      
                                 <input id="groupInfoPart-title-input" class="input-xlarge" maxlength="20" type="text" name="groupInfoPart-title-input" placeholder="写入你的标题">
+                                <input type="hidden" id="groupInfoPart-title-input-hidden" name="groupclass">
                             </div>                            
                             <div class="btn-group groupInfoPart-class">
                                 <label>分类：</label>
@@ -93,8 +94,14 @@
                                 <label for="groupInfoPart-description-input" style="vertical-align:top;">内容：</label>
                                 <textarea id="groupInfoPart-description-input" name="titleAndMail-description-input" rows="15"></textarea>
                             </div>
+                            <div class="thingInput-href">
+                                <label>图标:</label>
+                                <img src="img/logo.png" class="img-rounded">
+                                <input type="file" style="display:none;" id="uploadpic" name="uploadpic" accept="image/*"/>
+                                <a class="btn" href="javascript:document.getElementById('uploadpic').click();">添加图标</a>
+                            </div>
                             <div class="groupInfoPart-submitButton">
-                                <button class="btn btn-success" type="button">确认创建</button>
+                                <button class="btn btn-success"  id="submitbutton" type="submit">确认创建</button>
                             </div>
                         </form>                      
                     </div>                    

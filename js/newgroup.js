@@ -2,7 +2,24 @@ $(document).ready(function(){
 	// 获取分类的值
 	// ------------------------------------------------------------------------------
 	$(".groupInfoPart-class-li").click(function() {
-		$("#writeblog_clssification").val($(this).text());
+            if($(this).text()=="学校/学院"){
+                $("#groupInfoPart-title-input-hidden").val(1);
+            }
+            else if($(this).text()=="书籍"){
+                $("#groupInfoPart-title-input-hidden").val(2);
+            }
+            else if($(this).text()=="电子产品"){
+                $("#groupInfoPart-title-input-hidden").val(3);
+            }
+            else if($(this).text()=="生活用品"){
+                $("#groupInfoPart-title-input-hidden").val(4);
+            }
+            else if($(this).text()=="其他"){
+                $("#groupInfoPart-title-input-hidden").val(5);
+            }
+            else{
+                $("#groupInfoPart-title-input-hidden").val(0);
+            }
 		$("#selectClass").text("分类：" + $(this).text());
 	});
 	//--------------------------------------------------------------------------

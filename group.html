@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head>    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>二手</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -13,6 +13,21 @@
     </head>
 
     <body>
+        <?php
+        session_start();
+        require 'source/GroupOperation.php';
+        $username=$_SESSION['UserName'];
+        $userid=$_SESSION['UserId'];
+        $groupid=$_GET['groupid'];
+        if($groupid==null||$userid==null)
+            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
+        else{
+        
+        $groupopera=new GroupOperation();;
+        $groupopera->Init('localhost', 'root', 'root');
+        $group=$groupopera->getgroup($groupid);
+        }
+        ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner navBack">
@@ -40,7 +55,7 @@
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php echo $username;?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
@@ -69,14 +84,25 @@
                 <div class="groupAll">
                     <div class="groupBasicTopic">
                         <div  class="groupBasicTopic-head">
-                            <img src="img/Kyle.jpg" class="img-rounded groupBasicTopic-head-pic">
+                            <?php 
+                            echo "<img src='"."$group->photourl"."' class='img-rounded groupBasicTopic-head-pic'>";
+                            ?>
                             <p class="groupBasicTopic-head-nameAndButton">
-                                <span>南方公园同乐会</span>
-                                <button class="btn btn-success" type="button">加入该小组</button>
+                                <span><?php echo $group->name;?></span>
+                                <?php echo "<input type='hidden' name='"."$group->id"."' id='hidden_groupid'/>";
+                                echo "<input type='hidden' name='"."$userid"."' id='hidden_userid'/>";?>
+                                <?php
+                                $decide=$groupopera->isin($userid,$group->id);
+                                if(!$decide)
+                                    echo "<button class='btn btn-success' type='button' id='joinGroup'>加入该小组</button>";
+                                 else
+                                    echo "<button class='btn' type='button' id='exitGroup'>退出小组</button>";
+                                  $groupopera->close();
+                                ?>
                             </p>
                         </div>
                         <div class="groupBasicTopic-basic">
-                            <p>在旅程结束N个月后，终于开始记录我的第一次美国之行，其间几欲逃避，可念及记忆力已大不如前，再不抢救，便会如同《献给阿尔吉侬的花束》里智力进入衰退期的查理·高登一般，陷入对垂暮的恐惧。简单一些，把还能够记起的事情来一篇流水帐，也好过烂在回忆里。
+                            <p><?php echo $group->description;?>
                             </p>
                             <div id="groupBasicTopic-basic-edit">
                                 <button class="btn btn-info" type="button">编辑</button>
@@ -157,10 +183,10 @@
                         </div>
                     </div>
                     <div class="groupPerson">
-                        <div class="groupPerson-leader">
+<!--                        <div class="groupPerson-leader">
                             <p>组长</p>
                             <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
-                        </div>
+                        </div>-->
                         <div class="groupPerson-grouper">
                             <p>小组成员</p>
                             <div class="groupPerson-grouperList">
@@ -185,5 +211,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
+        <script src="js/group.js"></script>
     </body>
 </html>
