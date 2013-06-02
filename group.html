@@ -96,7 +96,7 @@
                                 if(!$decide)
                                     echo "<button class='btn btn-success' type='button' id='joinGroup'>加入该小组</button>";
                                  else
-                                    echo "<button class='btn' type='button' id='exitGroup'>退出小组</button>";
+                                    echo "<button class='btn' type='button' id='joinGroup'>退出小组</button>";
                                   $groupopera->close();
                                 ?>
                             </p>
@@ -107,7 +107,9 @@
                             <div id="groupBasicTopic-basic-edit">
                                 <?php 
                                 if($decide)
-                                echo "<button class='btn btn-info' type='button'>编辑</button>";
+                                echo "<button class='btn btn-info showandhidden' type='button'>编辑</button>";
+                                else
+                                echo "<button class='btn btn-info showandhidden' type='button' style='display:none;'>编辑</button>";
                                 ?>
                             </div>
                         </div>
@@ -118,7 +120,9 @@
                             </div>
                             <?php 
                                 if($decide)
-                                echo "<a  href='newtopic.html?groupid="."$group->id"."' class='btn btn-info' type='button' id='groupBasicTopic-topic-newTopic'>发言</a>";
+                                echo "<a  href='newtopic.html?groupid="."$group->id"."' class='btn btn-info showandhidden' type='button' id='groupBasicTopic-topic-newTopic'>发言</a>";
+                                else
+                                echo "<a  href='newtopic.html?groupid="."$group->id"."' class='btn btn-info showandhidden' type='button' id='groupBasicTopic-topic-newTopic' style='display:none'>发言</a>";
                                 ?>
                             <table class="table topicTable">
                                 <thead>
