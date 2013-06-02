@@ -17,12 +17,16 @@
         session_start();
         require 'source/TopicOperation.php';
         require 'source/UserOperation.php';
+        require 'source/TopicreplyOperation.php';
         $username=$_SESSION['UserName'];
         $userid=$_SESSION['UserId'];
         $topicid=$_GET['topicid'];
         if($topicid==null||$userid==null)
             echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
         else{
+        $topicreplyopera=new TopicreplyOperation();
+        $topicreplyopera->Init('localhost', 'root', 'root');
+        $topicreply=$topicreplyopera->getallreply($topicid);
         $useropera=new UserOperation();
         $useropera->Init('localhost', 'root', 'root');
         $user=$useropera->getuser($userid);
@@ -35,7 +39,7 @@
         }
         $signuser=$useropera->getuser($topic->userid);
         $signgroup=$topicopera->getingroup($topicid);
-        $useropera->close();
+        $topicopera->close();
         ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -115,39 +119,24 @@
                             </div>                           
                         </div>
                         <div>
-                            <span class="replyNum-info"><?php echo $topic->replynum;?>个回应</span>
+                            <span class="replyNum-info"><span id="replyNumSpan"><?php  $num=mysql_num_rows($topicreply); echo $num;?></span>个回应</span>
                         </div>
                         <div class="topicInfo-reply">
-                            <div class="topicInfo-reply-single">
-                                <div class="topInfo-Pic">
-                                    <a href="#"><img src="img/Kenny.jpg"></a>
-                                </div>
-                                <div class="topInfo-content">
-                                    <div class="topInfo-title">
-                                        <a href="#">楚氏清汤面</a>
-                                        <span>(2013-09-09 13:22:09)</span>
-                                    </div>
-                                    <div class="topInfo-info">
-                                        <p>挽尊
-                                        </p>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <div class="topicInfo-reply-single">
-                                <div class="topInfo-Pic">
-                                    <a href="#"><img src="img/Eric.jpg"></a>
-                                </div>
-                                <div class="topInfo-content">
-                                    <div class="topInfo-title">
-                                        <a href="#">PacoIrene</a>
-                                        <span>(2013-09-09 13:24:38)</span>
-                                    </div>
-                                    <div class="topInfo-info">
-                                        <p>专业挽尊20年
-                                        </p>
-                                    </div>
-                                </div>                                
-                            </div>
+                            <?php                        
+                        for($i=0;$i<$num;$i=$i+1){
+                        $rowhere=  mysql_fetch_array($topicreply);
+                        $userhere=$useropera->getuser($rowhere['userid']);
+                        echo "<div class='topicInfo-reply-single'><div class='topInfo-Pic'>";
+                        echo "<a href='personal.html?userid=".$userhere->id."'><img src='".$userhere->photourl."'></a></div>";
+                        echo "<div class='topInfo-content'><div class='topInfo-title'>";
+                        echo "<a href='personal.html?userid=".$userhere->id."'>".$userhere->name."</a>";
+                        echo "<span>(".$rowhere['time'].")</span>";
+                        echo "</div><div class='topInfo-info';><p>";
+                        echo $rowhere["content"];
+                        echo "</p></div></div></div>";
+                        }
+                        $useropera->close();
+                        ?>
                         </div>
                         <div class="addReply">
                              <?php 

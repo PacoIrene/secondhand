@@ -32,6 +32,8 @@ $(document).ready(function(){
                        var text=text1+text2+text3+text4+text5+text6+content+text7;
                        $(".topicInfo-reply").append(text); 
                        $("#topInfo-content-input").val("");
+                       var num=$("#replyNumSpan").text();
+                       $("#replyNumSpan").text(String(Number(num)+1));
                     }else{ 
                         alert("网络环境异常");
                         return false; 

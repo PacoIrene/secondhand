@@ -33,6 +33,7 @@ class TopicOperation {
         $this->topic=new Topic($row["id"],$row["name"],$row["content"],$row["time"],$row["replynum"],$row["userid"],$row["groupid"]);
         return $this->topic;
     }
+
     public function getingroup($topicid){
         $sql="SELECT groupid FROM secondhand.topic WHERE id='$topicid'";
         $result=  mysql_query($sql,$this->conn);
