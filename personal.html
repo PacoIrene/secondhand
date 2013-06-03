@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>二手</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -13,6 +13,31 @@
     </head>
 
     <body>
+        <?php
+        session_start();
+        $username=$_SESSION['UserName'];
+        $userid=$_SESSION['UserId'];
+        $nowuserid=$_GET['userid'];
+        require 'source/ThingOperation.php';
+        require 'source/UserOperation.php';
+        require 'source/GroupOperation.php';
+        if($userid==null)
+        echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
+        else{
+        if($nowuserid==null)
+        $nowuserid=$userid;
+        if($userid==$nowuserid)
+        $isown=true;
+        else
+        $isown=false;
+        $useropera=new UserOperation();
+        $useropera->Init('localhost', 'root', 'root');
+        $user=$useropera->getuser($nowuserid);
+        if($user->name==null)
+        echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
+        }
+
+        ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner navBack">
@@ -25,7 +50,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
                             <li class="active">
-                                <a href="#">首页</a>
+                                <a href="personal.html">首页</a>
                             </li>
                             <li>
                                 <a href="allusertopic.html">我的小组</a>
@@ -43,9 +68,9 @@
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php session_start(); echo $_SESSION['UserName'];?><b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php echo $_SESSION['UserName'];?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="personal.html">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
                                         <li role="presentation" class="divider"></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">退出</a></li>
@@ -71,172 +96,75 @@
             <div class="row-fluid">
                 <div class="span8 content">
                     <div class="personPart">
-                        <h3>我的主页</h3>
+                        <h3><?php 
+                            if(!$isown)
+                            echo $user->name;
+                            else
+                            echo "我";?>的主页</h3>
                         <div class="personPart-group">
-                            <p>我加入的小组<span class="hmore">(<a href="mygroup.html">查看全部</a>)</span></p>
+                            <p><?php if($isown) echo "我"; else echo "他";?>加入的小组<span class="hmore">(<?php echo "<a href='mygroup.html?userid=".$nowuserid."'>";?>查看全部</a>)</span></p>
                             <div class="personPart-group-pic">
-                                <dl class="personPart-group-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Eric</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-group-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kyle.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kyle</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-group-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kenny</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-group-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Eric</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-group-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kyle.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kyle</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-group-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kenny</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-group-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kenny</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-group-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kenny</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-group-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kenny</a>
-                                    </dd>
-                                </dl> 
+                                <?php 
+                                $groupopera=new GroupOperation();
+                                $groupopera->Init('localhost', 'root', 'root');
+                                $usergroup=$groupopera->getallgroupforuserlimit($nowuserid);
+                                while ($row=  mysql_fetch_array($usergroup))
+                                {
+                                $grouphere=$groupopera->getgroup($row['groupid']);
+                                $length=strlen($grouphere->name);
+                                    if($length>12)
+                                        $pcontent=substr($grouphere->name,0,12)."...";
+                                    else
+                                        $pcontent=$grouphere->name;
+                                echo "<dl class='personPart-group-li'><dt>";
+                                echo "<a title='".$grouphere->name."' href='group.html?groupid=".$grouphere->id."'><img src='".$grouphere->photourl."' class='img-rounded'></a></dt><dd>";
+                                echo "<a  style='margin-left:-10px;' title='".$grouphere->name."' href='group.html?groupid=".$grouphere->id."'>".$pcontent."</a></dd></dl>";
+                                }        $groupopera->close();
+                                ?>
                             </div>
                         </div>
                         <div class="personPart-buy">
-                            <p>我想买的东西<span class="hmore">(<a href="#">查看全部</a>)</span></p>
+                            <p><?php if($isown) echo "我"; else echo "他";?>想买的东西<span class="hmore">(<?php echo "<a href='mywantthing.html?class=0&userid=".$nowuserid."'>";?>查看全部</a>)</span></p>
                             <div class="personPart-buy-pic">
-                                <dl class="personPart-buy-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Eric</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-buy-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kyle.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kyle</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-buy-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kenny</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-buy-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Eric</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-buy-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kyle.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kyle</a>
-                                    </dd>
-                                </dl>
-                                </div> 
+                                <?php
+                                $thingopera=new ThingOperation();
+                                $thingopera->Init('localhost', 'root', 'root');
+                                $usergroup=$thingopera->getuserbuythinglimit($nowuserid);
+                                while ($row=  mysql_fetch_array($usergroup))
+                                {
+                                $grouphere=$thingopera->getthing($row['thingid']);
+                                $length=strlen($grouphere->name);
+                                    if($length>12)
+                                        $pcontent=substr($grouphere->name,0,12)."...";
+                                    else
+                                        $pcontent=$grouphere->name;
+                                echo "<dl class='personPart-buy-li'><dt>";
+                                echo "<a title='".$grouphere->name."' href='thing.html?thingid=".$grouphere->id."'><img src='".$grouphere->photourl."' class='img-rounded'></a></dt><dd>";
+                                echo "<a  style='margin-left:-10px;' title='".$grouphere->name."' href='thing.html?thingid=".$grouphere->id."'>".$pcontent."</a></dd></dl>";
+                                }      
+                                ?>
+                            </div> 
                         </div>
                         <div class="personPart-sell">
-                            <p>我想卖的东西<span class="hmore">(<a href="#">查看全部</a>)</span></p>
+                            <p><?php if($isown) echo "我"; else echo "他";?>想卖的东西<span class="hmore">(<?php echo "<a href='mywantthing.html?class=1&userid=".$nowuserid."'>";?>查看全部</a>)</span></p>
                             <div class="personPart-sell-pic">
-                                <dl class="personPart-sell-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Eric</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-sell-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kyle.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kyle</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-sell-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kenny</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-sell-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Eric</a>
-                                    </dd>
-                                </dl> 
-                                <dl class="personPart-sell-li">
-                                    <dt>
-                                        <a href="#"><img src="img/Kyle.jpg" class="img-rounded"></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">Kyle</a>
-                                    </dd>
-                                </dl> 
+                                <?php
+                                $thingopera=new ThingOperation();
+                                $thingopera->Init('localhost', 'root', 'root');
+                                $usergroup=$thingopera->getusersellthinglimit($nowuserid);
+                                while ($row=  mysql_fetch_array($usergroup))
+                                {
+                                $grouphere=$thingopera->getthing($row['thingid']);
+                                $length=strlen($grouphere->name);
+                                    if($length>12)
+                                        $pcontent=substr($grouphere->name,0,12)."...";
+                                    else
+                                        $pcontent=$grouphere->name;
+                                echo "<dl class='personPart-buy-li'><dt>";
+                                echo "<a title='".$grouphere->name."' href='thing.html?thingid=".$grouphere->id."'><img src='".$grouphere->photourl."' class='img-rounded'></a></dt><dd>";
+                                echo "<a  style='margin-left:-10px;' title='".$grouphere->name."' href='thing.html?thingid=".$grouphere->id."'>".$pcontent."</a></dd></dl>";
+                                }      
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -244,11 +172,14 @@
                 <div class="span4 aside">
                     <div class="personInfo">
                         <div class="personInfo-pic">
-                            <img src="img/logo.png">
-                            <h3>清水煮面条</h3>
+                            <?php echo "<img src='".$user->photourl."'>";?>
+                            <h3><?php echo $user->name;?></h3>
                         </div>
                         <div class="personInfo-edit">
-                            <a href="#">编辑资料</a>
+                            <?php if(!$isown)
+                            echo "<a  href='"."sendmail.html?userid=".$nowuserid."'>发消息</a>";
+                            else
+                            echo "<a  href='"."infochange.html"."'>编辑资料</a>";?>
                         </div>
                     </div>
                 </div>                   

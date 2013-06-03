@@ -119,7 +119,22 @@ class ThingOperation {
         }
         return $result;
     }
-
+    public function getuserbuythinglimit($userid){
+        $sql="SELECT thingid FROM secondhand.buything WHERE userid='$userid' LIMIT 0,5 ";
+        $result=  mysql_query($sql,$this->conn);
+        if(!$result){
+            die("Could not query the sql");
+        }
+        return $result;
+    }
+    public function getusersellthinglimit($userid){
+        $sql="SELECT thingid FROM secondhand.sellthing WHERE userid='$userid' LIMIT 0,5";
+        $result=  mysql_query($sql,$this->conn);
+        if(!$result){
+            die("Could not query the sql");
+        }
+        return $result;
+    }
     public function close(){
         mysql_close($this->conn);
     }

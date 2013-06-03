@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>修改个人信息</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -13,6 +13,23 @@
     </head>
 
     <body>
+         <?php
+        session_start();
+        $username=$_SESSION['UserName'];
+        $userid=$_SESSION['UserId'];
+        require 'source/UserOperation.php';
+        if($userid==null)
+        echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
+        else{
+        
+        $useropera=new UserOperation();
+        $useropera->Init('localhost', 'root', 'root');
+        $user=$useropera->getuser($userid);
+        if($user->name==null)
+        echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
+        }
+
+        ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner navBack">
@@ -24,14 +41,17 @@
                                                 class="websiteTitleInNav" /> </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
-                            <li class="active">
-                                <a href="#">首页</a>
+                             <li class="active">
+                                <a href="personal.html">首页</a>
                             </li>
                             <li>
-                                <a href="#">我的小组</a>
+                                <a href="allusertopic.html">我的小组</a>
                             </li>
                             <li>
-                                <a href="#">发现小组</a>
+                                <a href="groupclass.html">发现小组</a>
+                            </li>
+                            <li>
+                                <a href="thingclass.html">发现东西</a>
                             </li>
                             <li>
                                 <a href="#">消息</a>
@@ -40,9 +60,9 @@
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php echo $_SESSION['UserName'];?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="personal.html">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
                                         <li role="presentation" class="divider"></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">退出</a></li>
@@ -63,49 +83,50 @@
 
             </div>
         </div>
+        <div class="messageDiv templateMsgDiv">
+			<i class="icon icon-circle"></i>
+			<p>恭喜您中了5000万超级大奖</p>
+		</div>
+		<div class="messagesDiv"></div>
         <!--------------------------- mailinfo page -------------------------->
         <div id="mainWindow" class="container-fluid">
             <div class="row-fluid">
                 <div class="span8 content">
                     <div class="infoChange">
                         <h3>修改个人信息</h3>
-                        <div class="control-group userNameControl">
-                            <label class="control-label">昵称:</label>
-                            <div class="controls">
-                                <input type="text" id="userNameInputR" placeholder="昵称" name="registerForm.name">
+                        <form action="source/infochange.php" method="POST">
+                            <div class="control-group userNameControl">
+                                <label class="control-label">昵称:</label>
+                                <div class="controls">
+                                    <?php echo "<input type='text' value='".$user->name."' id='userNameInputR' placeholder='昵称' name='registerFormname'>";?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group passwordRControl">
-                            <label class="control-label" for="inputPassword">密码:</label>
-                            <div class="controls">
-                                <input type="password" id="passwordInputR" placeholder="密码" name="registerForm.password">
+                            <div class="control-group passwordRControl">
+                                <label class="control-label" for="inputPassword">密码:</label>
+                                <div class="controls">
+                                    <input type="password" id="passwordInputR" placeholder="密码" name="registerFormpassword">
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group passwordR2Control">
-                            <label class="control-label" for="inputPassword">确认密码:</label>
-                            <div class="controls">
-                                <input type="password" id="passwordInputR2" placeholder="确认密码">
+                            <div class="control-group passwordR2Control">
+                                <label class="control-label" for="inputPassword">确认密码:</label>
+                                <div class="controls">
+                                    <input type="password" id="passwordInputR2" placeholder="确认密码" name="registerFormpasswordr">
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group CamadyControl">
-                            <label class="control-label">学院:</label>
-                            <div class="controls">
-                                <input type="text" id="CamadyInputR" placeholder="学院" name="registerForm.name">
+                            <div class="thingInput-href">
+                                    <label>图标:</label>
+                                    <img src="img/logo.png" class="img-rounded">
+                                    <button class="btn" type="button">添加图标</button>
+                                </div>
+                            <div class="control-group">
+                                <button class="btn" type="submit">确认修改</button>
                             </div>
-                        </div>
-                        <div class="thingInput-href">
-                                <label>图标:</label>
-                                <img src="img/logo.png" class="img-rounded">
-                                <button class="btn" type="button">添加图标</button>
-                            </div>
-                        <div class="control-group">
-                            <button class="btn">确认修改</button>
-                        </div>
+                         </form>
                     </div>
                 </div>
                     <div class="span4 aside">
                         <div class="mainLink">
-                            <div class="mainLink-div"><a href="#">>返回我的主页</a></div>
+                            <div class="mainLink-div"><a href="personal.html">>返回我的主页</a></div>
                         </div> 
                     </div>                   
             </div>
@@ -113,5 +134,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
+        <script src="js/infochange.js"></script>
     </body>
 </html>

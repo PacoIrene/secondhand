@@ -58,6 +58,13 @@ class UserOperation {
             return false;
         }
     }
+    public function updateuser($userid,$name,$password,$photourl){
+        $sql="UPDATE secondhand.user SET name='$name',password='$password',photourl='$photourl' WHERE id='$userid'";
+         $result=  mysql_query($sql,$this->conn);
+        if(!$result){
+            die("Could not query the sql");
+        }
+    }
 
     public function close(){
          mysql_close($this->conn);

@@ -18,16 +18,24 @@
         $username=$_SESSION['UserName'];
         $userid=$_SESSION['UserId'];
         $groupclass=$_GET['class'];
-       require 'source/ThingOperation.php';
+        $nowuserid=$_GET['userid'];
+        require 'source/ThingOperation.php';
+        require 'source/UserOperation.php';
         if($userid==null)
-            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
+        echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
         else{
-            if($groupclass==null)
-                $groupclass=0;
-             elseif ($groupclass=='1')
-                $groupclass=1;
-                else $groupclass=0;
-            }
+        if($groupclass==null)
+        $groupclass=0;
+        elseif ($groupclass=='1')
+        $groupclass=1;
+        else $groupclass=0;
+        if($nowuserid==null)
+        $nowuserid=$userid;
+        if($userid==$nowuserid)
+        $isown=true;
+        else
+        $isown=false;
+        }
         ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -40,10 +48,10 @@
                                                 class="websiteTitleInNav" /> </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
-                             <li>
+                            <li>
                                 <a href="#">首页</a>
                             </li>
-                           <li>
+                            <li>
                                 <a href="allusertopic.html">我的小组</a>
                             </li>
                             <li>
@@ -85,69 +93,87 @@
         <!--------------------------- mailinfo page -------------------------->
         <div id="mainWindow" class="container-fluid">
             <?php 
-             echo "<input type='hidden' name='"."$groupclass"."' id='hidden_class'/>";
-                                echo "<input type='hidden' name='"."$userid"."' id='hidden_userid'/>";
-                                echo "<input type='hidden' name='1' id='hidden_pagenum'/>";?>
+            echo "<input type='hidden' name='"."$groupclass"."' id='hidden_class'/>";
+            echo "<input type='hidden' name='"."$nowuserid"."' id='hidden_userid'/>";
+            echo "<input type='hidden' name='1' id='hidden_pagenum'/>";?>
             <div class="row-fluid">
                 <div class="span8 content">
                     <h3 style="padding-left: 40px; margin-top: 20px;"><?php
+                        $text="";
+                         if($isown) $text=$text."我";
+                        else{
+                        $useroperanow=new UserOperation();
+                        $useroperanow->Init("localhost","root","root");
+                        $userhereandnow=$useroperanow->getuser($nowuserid);
+                        $text=$text.$userhereandnow->name;}
                         if($groupclass==0)
-                        echo "我想买的";
-                         if($groupclass==1)
-                        echo "我想卖的";
+                        $text=$text."想买的";
+                        if($groupclass==1)
+                        $text=$text."想卖的";
+                        echo $text;
                         ?>
-                        </h3>
+                    </h3>
                     <div class="resultPart">
                         <?php
                         $thingopera=new ThingOperation();
                         $thingopera->Init('localhost', 'root', 'root');
                         if($groupclass==1)
-                            $result=$thingopera->getusersellthing($userid);
-                          else
-                          $result=$thingopera->getuserbuything($userid);
+                        $result=$thingopera->getusersellthing($nowuserid);
+                        else
+                        $result=$thingopera->getuserbuything($nowuserid);
                         $num=mysql_num_rows($result);
-                          if($num>10)
-                                        $total=10;
-                                     else
-                                        $total=$num;
-                                    for($i=0;$i<$total;$i=$i+1){
-                                    $rowhere=  mysql_fetch_array($result);
-                                    $thinghere=$thingopera->getthing($rowhere["thingid"]);
-                                    echo "<div class='result'><div class='resultPic'>";
-                                    echo "<a href=thing.html?thingid=".$thinghere->id."><img src='".$thinghere->photourl."'></a>";
-                                    echo "</div><div class='resultContent'><div class='resultTitle'>";
-                                    echo "<h3><a href=thing.html?thingid=".$thinghere->id.">".$thinghere->name."</a></h3>";
-                                    echo "</div><div class='resultInfo'><p>";
-                                    $length=strlen($thinghere->description);
-                                    if($length>60)
-                                        $pcontent=substr($thinghere->description,0,60)."...";
-                                    else
-                                        $pcontent=$thinghere->description;
-                                    echo $pcontent;
-                                    echo "</p></div>";
-                                    echo "</div></div>";
-                                    }
-                                  
+                        if($num>10)
+                        $total=10;
+                        else
+                        $total=$num;
+                        for($i=0;$i<$total;$i=$i+1){
+                        $rowhere=  mysql_fetch_array($result);
+                        $thinghere=$thingopera->getthing($rowhere["thingid"]);
+                        echo "<div class='result'><div class='resultPic'>";
+                        echo "<a href=thing.html?thingid=".$thinghere->id."><img src='".$thinghere->photourl."'></a>";
+                        echo "</div><div class='resultContent'><div class='resultTitle'>";
+                        echo "<h3><a href=thing.html?thingid=".$thinghere->id.">".$thinghere->name."</a></h3>";
+                        echo "</div><div class='resultInfo'><p>";
+                        $length=strlen($thinghere->description);
+                        if($length>60)
+                        $pcontent=substr($thinghere->description,0,60)."...";
+                        else
+                        $pcontent=$thinghere->description;
+                        echo $pcontent;
+                        echo "</p></div>";
+                        echo "</div></div>";
+                        }
+
                         ?>
-                         <?php
-                            if($num>10)
-                                echo"<button class='btn' id='grouperList-more' type='button' data-loading-text='努力加载中......'>加载更多</button>";
-                            ?>
+                        <?php
+                        if($num>10)
+                        echo"<button class='btn' id='grouperList-more' type='button' data-loading-text='努力加载中......'>加载更多</button>";
+                        ?>
                     </div>    
                 </div>
                 <div class="span4 aside">
                     <div class="classPart">
-                         <div class="thingHref">
+                        <div class="thingHref">
                             <div class="thingHref-single">
-                                <a href="mywantthing.html?class=0">>我的想买</a>
+                                <?php
+                                if($isown)
+                                echo "<a href='mywantthing.html?class=0'>>我的想买</a>";
+                                else
+                                echo "<a href='mywantthing.html?class=0&userid=".$nowuserid."'>>".$userhereandnow->name."的想买</a>";
+                                ?>
                             </div>
                             <div class="thingHref-single">
-                                <a href="mywantthing.html?class=1">>我的想卖</a>
+                                 <?php
+                                if($isown)
+                                echo "<a href='mywantthing.html?class=1'>>我的想卖</a>";
+                                else
+                                echo "<a href='mywantthing.html?class=1&userid=".$nowuserid."'>>".$userhereandnow->name."的想卖</a>";
+                                ?>
                             </div>
                         </div>
                         <div class="newgroup">
                             <a href="newthing.html">创建新东西</a>
-                            </div>
+                        </div>
                     </div>
                 </div>                   
             </div>

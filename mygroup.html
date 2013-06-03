@@ -19,9 +19,16 @@
         require 'source/UserOperation.php';
         $username=$_SESSION['UserName'];
         $userid=$_SESSION['UserId'];
+        $nowuserid=$_GET['userid'];
         if($userid==null)
             echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
         else{
+        if($nowuserid==null)
+        $nowuserid=$userid;
+        if($userid==$nowuserid)
+        $isown=true;
+        else
+        $isown=false;
         $groupopera=new GroupOperation();;
         $groupopera->Init('localhost', 'root', 'root');
 
@@ -39,7 +46,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
                             <li>
-                                <a href="#">首页</a>
+                                <a href="personal.html">首页</a>
                             </li>
                             <li  class="active">
                                 <a href="allusertopic.html">我的小组</a>
@@ -59,7 +66,7 @@
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php echo $username;?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="personal.html">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
                                         <li role="presentation" class="divider"></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">退出</a></li>
@@ -88,15 +95,20 @@
         <!--------------------------- mailinfo page -------------------------->
         <div id="mainWindow" class="container-fluid">
             <?php
-                                echo "<input type='hidden' name='"."$userid"."' id='hidden_userid'/>";
+                                echo "<input type='hidden' name='"."$nowuserid"."' id='hidden_userid'/>";
                                 echo "<input type='hidden' name='1' id='hidden_pagenum'/>";?>
             <div class="row-fluid">
                 <div class="span8 content">
-                    <h3>我加入的小组</h3> 
+                    <h3><?php if($isown) echo "我";
+                        else{
+                        $useroperanow=new UserOperation();
+                        $useroperanow->Init("localhost","root","root");
+                        $userhereandnow=$useroperanow->getuser($nowuserid);
+                        echo $userhereandnow->name;}?>加入的小组</h3> 
                     <p class="groupLead"></p>
                     <div class="groupList">
                         <?php 
-                        $usersgroup=$groupopera->getusersgroup($userid);
+                        $usersgroup=$groupopera->getusersgroup($nowuserid);
                         $num=mysql_num_rows($usersgroup);
                         if($num>10)
                                         $total=10;
@@ -105,9 +117,14 @@
                          for($i=0;$i<$total;$i=$i+1){
                                     $rowhere=  mysql_fetch_array($usersgroup);
                                     $grouphere=$groupopera->getgroup($rowhere['groupid']);
+                                     $length=strlen($grouphere->name);
+                                    if($length>12)
+                                        $pcontent=substr($grouphere->name,0,12)."...";
+                                    else
+                                        $pcontent=$grouphere->name;
                                     echo "<dl class='groupList-li'><dt>";
-                                    echo "<a href='group.html?groupid=".$grouphere->id."'><img src='".$grouphere->photourl."' class='img-rounded'></a></dt><dd>";
-                                    echo "<a href='group.html?groupid=".$grouphere->id."'>".$grouphere->name."</a></dd></dl>";
+                                    echo "<a  title='".$grouphere->name."' href='group.html?groupid=".$grouphere->id."'><img src='".$grouphere->photourl."' class='img-rounded'></a></dt><dd>";
+                                    echo "<a  title='".$grouphere->name."' style='margin-left:-10px;' href='group.html?groupid=".$grouphere->id."'>".$pcontent."</a></dd></dl>";
                                     }
                                     $groupopera->close();
                         ?>
@@ -120,10 +137,11 @@
                 </div>
                 <div class="span4 aside">
                     <div class="groupLink">
-                        <div class="groupLink-div"><a href="#">>全部小组话题</a></div>
-                        <div class="groupLink-div"><a href="#">>我发起的话题</a></div>
-                        <div class="groupLink-div"><a href="#">>我回应过的话题</a></div>
-                        <div class="groupLink-div"><a href="#">>创建小组</a></div>
+                        <div class="groupLink-div"><a href="allusertopic.html"><?php if($isown) echo ">全部小组话题";?></a></div>
+                        <div class="groupLink-div"><a href="mytopic.html"><?php if($isown) echo ">我发起的话题";?></a></div>
+                        <div class="groupLink-div"><a href="myreply.html"><?php if($isown) echo ">我回应过的话题";?></a></div>
+                        <div class="groupLink-div"><a href="newgroup.html"><?php if($isown) echo ">创建小组";?></a></div>
+                        <div class="groupLink-div"><?php echo "<a href='personal.html?userid=".$nowuserid."'>";?><?php if(!$isown) echo ">返回他的主页";?></a></div>
                     </div> 
                 </div>                   
             </div>

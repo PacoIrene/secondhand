@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>发消息</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -13,6 +13,26 @@
     </head>
 
     <body>
+         <?php
+        session_start();
+        $username=$_SESSION['UserName'];
+        $userid=$_SESSION['UserId'];
+        $nowuserid=$_GET['userid'];
+       require 'source/UserOperation.php';
+        if($userid==null)
+            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
+        else{
+           if($nowuserid==null)
+        $nowuserid=$userid;
+        if($userid==$nowuserid)
+        $isown=true;
+        else
+        $isown=false;
+         $useropera=new UserOperation();
+        $useropera->Init('localhost', 'root', 'root');
+        $user=$useropera->getuser($nowuserid);
+            }
+        ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner navBack">
@@ -24,14 +44,17 @@
                                                 class="websiteTitleInNav" /> </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
-                            <li class="active">
-                                <a href="#">首页</a>
+                           <li>
+                                <a href="personal.html">首页</a>
+                            </li>
+                           <li>
+                                <a href="allusertopic.html">我的小组</a>
                             </li>
                             <li>
-                                <a href="#">我的小组</a>
+                                <a href="groupclass.html">发现小组</a>
                             </li>
-                            <li>
-                                <a href="#">发现小组</a>
+                            <li  class="active">
+                                <a href="thingclass.html">发现东西</a>
                             </li>
                             <li>
                                 <a href="#">消息</a>
@@ -40,9 +63,9 @@
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php echo $username;?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="personal.html">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
                                         <li role="presentation" class="divider"></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">退出</a></li>
@@ -69,22 +92,25 @@
               <div class="mailContainer">
                 <h3>发送消息</h3>
                 <div class="objectInfo">
-                  <span>寄给: Chris</span>
-                  <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
-                  <div class="titleAndMail">
-                    <div class="titleAndMail-title">
-                      <label for="titleAndMail-title-input">标题:</label>
-                      <input id="titleAndMail-title-input" class="input-xxlarge" maxlength="20" type="text" name="titleAndMail-title-input" placeholder="写入你的标题">
+                  <span>寄给: <?php echo $user->name;?></span>
+                  <?php echo "<a href='personal.html?userid=".$user->id."'><img src='".$user->photourl."' class='img-rounded'></a>";?>
+                  <form action="source/newsendmail.php" method="POST">
+                      <?php echo "<input name='hiddenuserid' type='hidden' value='".$user->id."'>";?>
+                    <div class="titleAndMail">
+                      <div class="titleAndMail-title">
+                        <label for="titleAndMail-title-input">标题:</label>
+                        <input id="titleAndMail-title-input" class="input-xxlarge" maxlength="20" type="text" name="titleAndMail-title-input" placeholder="写入你的标题">
+                      </div>
+                      <div class="titleAndMail-mail">
+                        <label for="titleAndMail-mail-input" style="vertical-align:top;">内容:</label>
+                        <textarea id="titleAndMail-mail-input" name="titleAndMail-mail-input" rows="15"></textarea>
+                      </div>
                     </div>
-                    <div class="titleAndMail-mail">
-                      <label for="titleAndMail-mail-input" style="vertical-align:top;">内容:</label>
-                      <textarea id="titleAndMail-mail-input" name="titleAndMail-mail-input" rows="15"></textarea>
+                    <div class="objectInfoFooter">
+                      <button class="btn btn-success" type="submit">发送信息</button>
+                      <?php echo "<a class='btn' type='button' href='personal.html?userid=".$nowuserid."'>取消</a>"?>
                     </div>
-                  </div>
-                  <div class="objectInfoFooter">
-                    <button class="btn btn-success" type="button">发送信息</button>
-                    <button class="btn" type="button">取消</button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
