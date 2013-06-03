@@ -9,7 +9,7 @@
               media="screen">
         <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
         <link href="css/common.css" rel="stylesheet" media="screen">
-        <link href="css/groupclass.css" rel="stylesheet" media="screen">
+        <link href="css/mywantthing.css" rel="stylesheet" media="screen">
     </head>
 
     <body>
@@ -18,7 +18,7 @@
         $username=$_SESSION['UserName'];
         $userid=$_SESSION['UserId'];
         $groupclass=$_GET['class'];
-       require 'source/GroupOperation.php';
+       require 'source/ThingOperation.php';
         if($userid==null)
             echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
         else{
@@ -26,14 +26,6 @@
                 $groupclass=0;
              elseif ($groupclass=='1')
                 $groupclass=1;
-                elseif ($groupclass=='2')
-                $groupclass=2;
-                elseif ($groupclass=='3')
-                $groupclass=3;
-                elseif ($groupclass=='4')
-                $groupclass=4;
-                elseif ($groupclass=='5')
-                $groupclass=5;
                 else $groupclass=0;
             }
         ?>
@@ -48,16 +40,16 @@
                                                 class="websiteTitleInNav" /> </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
-                            <li>
+                             <li>
                                 <a href="#">首页</a>
                             </li>
-                            <li>
+                           <li>
                                 <a href="allusertopic.html">我的小组</a>
                             </li>
-                            <li  class="active">
+                            <li>
                                 <a href="groupclass.html">发现小组</a>
                             </li>
-                            <li>
+                            <li  class="active">
                                 <a href="thingclass.html">发现东西</a>
                             </li>
                             <li>
@@ -92,7 +84,7 @@
         </div>
         <!--------------------------- mailinfo page -------------------------->
         <div id="mainWindow" class="container-fluid">
-             <?php 
+            <?php 
              echo "<input type='hidden' name='"."$groupclass"."' id='hidden_class'/>";
                                 echo "<input type='hidden' name='"."$userid"."' id='hidden_userid'/>";
                                 echo "<input type='hidden' name='1' id='hidden_pagenum'/>";?>
@@ -100,25 +92,19 @@
                 <div class="span8 content">
                     <h3 style="padding-left: 40px; margin-top: 20px;"><?php
                         if($groupclass==0)
-                        echo "全部";
+                        echo "我想买的";
                          if($groupclass==1)
-                        echo "学校/学院";
-                        if($groupclass==2)
-                        echo "书籍";
-                        if($groupclass==3)
-                        echo "电子产品";
-                        if($groupclass==4)
-                        echo "生活用品";
-                        if($groupclass==5)
-                        echo "其他";
-                        
+                        echo "我想卖的";
                         ?>
                         </h3>
                     <div class="resultPart">
                         <?php
-                        $groupopera=new GroupOperation();
-                        $groupopera->Init('localhost', 'root', 'root');
-                        $result=$groupopera->getgroupbyclass($groupclass);
+                        $thingopera=new ThingOperation();
+                        $thingopera->Init('localhost', 'root', 'root');
+                        if($groupclass==1)
+                            $result=$thingopera->getusersellthing($userid);
+                          else
+                          $result=$thingopera->getuserbuything($userid);
                         $num=mysql_num_rows($result);
                           if($num>10)
                                         $total=10;
@@ -126,24 +112,24 @@
                                         $total=$num;
                                     for($i=0;$i<$total;$i=$i+1){
                                     $rowhere=  mysql_fetch_array($result);
+                                    $thinghere=$thingopera->getthing($rowhere["thingid"]);
                                     echo "<div class='result'><div class='resultPic'>";
-                                    echo "<a href=group.html?groupid=".$rowhere["id"]."><img src='".$rowhere["photourl"]."'></a>";
+                                    echo "<a href=thing.html?thingid=".$thinghere->id."><img src='".$thinghere->photourl."'></a>";
                                     echo "</div><div class='resultContent'><div class='resultTitle'>";
-                                    echo "<h3><a href=group.html?groupid=".$rowhere["id"].">".$rowhere["name"]."</a></h3>";
+                                    echo "<h3><a href=thing.html?thingid=".$thinghere->id.">".$thinghere->name."</a></h3>";
                                     echo "</div><div class='resultInfo'><p>";
-                                    $length=strlen($rowhere["description"]);
-                                    if($length>42)
-                                        $pcontent=substr($rowhere["description"],0,42)."...";
+                                    $length=strlen($thinghere->description);
+                                    if($length>60)
+                                        $pcontent=substr($thinghere->description,0,60)."...";
                                     else
-                                        $pcontent=$rowhere["description"];
+                                        $pcontent=$thinghere->description;
                                     echo $pcontent;
-                                    echo "</p></div><div class='resultJoin'>";
-                                        echo "<a class='joinhref' id='".$rowhere["id"]."' href='group.html?groupid=".$rowhere["id"]."' name='".$rowhere["id"]."'>> 进入小组</a>";
-                                    echo "</div></div></div>";
+                                    echo "</p></div>";
+                                    echo "</div></div>";
                                     }
                                   
                         ?>
-                        <?php
+                         <?php
                             if($num>10)
                                 echo"<button class='btn' id='grouperList-more' type='button' data-loading-text='努力加载中......'>加载更多</button>";
                             ?>
@@ -151,21 +137,16 @@
                 </div>
                 <div class="span4 aside">
                     <div class="classPart">
-                        <div class="classTitle">
-                            <span>全部分类</span>
-                        </div>
-                        <div class="classInfo">
-                            <ul class="classInfoOn">
-                                <li class="classInfoOn-class-li"><a href="groupclass.html">全部小组</a></li>
-                                <li class="classInfoOn-class-li"><a href="groupclass.html?class=1">学校/学院</a></li>
-                                <li class="classInfoOn-class-li"><a href="groupclass.html?class=2">书籍</a></li>
-                                <li class="classInfoOn-class-li"><a href="groupclass.html?class=3">电子产品</a></li>
-                                <li class="classInfoOn-class-li"><a href="groupclass.html?class=4">生活用品</a></li>
-                                <li class="classInfoOn-class-li"><a href="groupclass.html?class=5">其他</a></li>
-                            </ul>
+                         <div class="thingHref">
+                            <div class="thingHref-single">
+                                <a href="mywantthing.html?class=0">>我的想买</a>
+                            </div>
+                            <div class="thingHref-single">
+                                <a href="mywantthing.html?class=1">>我的想卖</a>
+                            </div>
                         </div>
                         <div class="newgroup">
-                            <a href="newgroup.html">新建小组</a>
+                            <a href="newthing.html">创建新东西</a>
                             </div>
                     </div>
                 </div>                   
@@ -174,6 +155,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
-        <script src="js/groupclass.js"></script>
+        <script src="js/mywantthing.js"></script>
     </body>
 </html>

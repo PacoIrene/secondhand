@@ -98,6 +98,21 @@
                                 echo "<input type='hidden' name='1' id='hidden_pagenum'/>";?>
             <div class="row-fluid">
                 <div class="span8 content">
+                    <h3 style="padding-left: 40px;margin-top: 20px;">
+                        <?php
+                        if($groupclass==0)
+                        echo "全部";
+                        if($groupclass==1)
+                        echo "书籍";
+                        if($groupclass==2)
+                        echo "电子产品";
+                        if($groupclass==3)
+                        echo "生活用品";
+                        if($groupclass==4)
+                        echo "其他";
+                        
+                        ?>
+                    </h3>
                     <div class="resultPart">
                         <?php
                         $thingopera=new ThingOperation();
@@ -116,8 +131,8 @@
                                     echo "<h3><a href=thing.html?thingid=".$rowhere["id"].">".$rowhere["name"]."</a></h3>";
                                     echo "</div><div class='resultInfo'><p>";
                                     $length=strlen($rowhere["description"]);
-                                    if($length>42)
-                                        $pcontent=substr($rowhere["description"],0,42)."...";
+                                    if($length>60)
+                                        $pcontent=substr($rowhere["description"],0,60)."...";
                                     else
                                         $pcontent=$rowhere["description"];
                                     echo $pcontent;
