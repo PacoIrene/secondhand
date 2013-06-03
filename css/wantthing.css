@@ -69,6 +69,8 @@
 }
 .thingHead img{
 	margin-bottom: 10px;
+        width:140px;
+        height: 140px;
 }
 .thingHref-single a,.thingHead>a{
 	text-decoration: none;

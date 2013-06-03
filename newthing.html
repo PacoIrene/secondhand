@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>新建东西</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -24,14 +24,17 @@
                                                 class="websiteTitleInNav" /> </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
-                            <li class="active">
+                            <li>
                                 <a href="#">首页</a>
                             </li>
-                            <li>
-                                <a href="#">我的小组</a>
+                           <li>
+                                <a href="allusertopic.html">我的小组</a>
                             </li>
                             <li>
-                                <a href="#">发现小组</a>
+                                <a href="groupclass.html">发现小组</a>
+                            </li>
+                            <li  class="active">
+                                <a href="thingclass.html">发现东西</a>
                             </li>
                             <li>
                                 <a href="#">消息</a>
@@ -40,7 +43,7 @@
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php session_start(); if($_SESSION['UserName']==null) echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";else echo $_SESSION['UserName'];?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
@@ -70,9 +73,11 @@
                     <div class="thingInput">
                         <h3>创建新条目</h3>
                         <div class="thingInputAll">
+                            <form class="thingInfoPart-form" action="source/newthing.php" method="POST">
                             <div class="thingInput-title">
                                 <label for="thingInput-title-input">名称:</label>
                                 <input id="thingInput-title-input" class="input-xxlarge" maxlength="20" type="text" name="thingInput-title-input" placeholder="写入名称">
+                                <input type="hidden" id="thingInfoPart-title-input-hidden" name="thingclass">
                             </div>
                             <div class="btn-group groupInfoPart-class">
                                 <label>分类:</label>
@@ -99,8 +104,9 @@
                                 <a class="btn" href="javascript:document.getElementById('upload').click();">添加图标</a>
                             </div>
                             <div class="thingInput-button">
-                                <button class="btn btn-success" type="button">确认创建</button>
+                                <button class="btn btn-success" type="submit">确认创建</button>
                             </div>
+                            </form>
                         </div>                        
                     </div>
                 </div>

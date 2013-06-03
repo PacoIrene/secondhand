@@ -34,13 +34,16 @@
                                 <a href="groupclass.html">发现小组</a>
                             </li>
                             <li>
+                                <a href="thingclass.html">发现东西</a>
+                            </li>
+                            <li>
                                 <a href="#">消息</a>
                             </li>
                         </ul>
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php session_start(); echo $_SESSION['UserName'];?><b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php session_start(); if($_SESSION['UserName']==null) echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">"; else echo $_SESSION['UserName'];?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
@@ -69,7 +72,7 @@
                 <div class="span8 content">
                     <h3>创建小组</h3>
                     <div class="groupInfoPart">
-                        <form class="groupInfoPart-form" action="source/action/newgroup.php" method="POST">
+                        <form class="groupInfoPart-form" action="source/newgroup.php" method="POST">
                             <div class="groupInfoPart-title">
                                 <label for="groupInfoPart-title-input" style="vertical-align:middle;">标题：</label>      
                                 <input id="groupInfoPart-title-input" class="input-xlarge" maxlength="20" type="text" name="groupInfoPart-title-input" placeholder="写入你的标题">

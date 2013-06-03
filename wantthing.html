@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>二手</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -13,6 +13,32 @@
     </head>
 
     <body>
+        <?php
+        session_start();
+        require 'source/UserOperation.php';
+        $username=$_SESSION['UserName'];
+        $userid=$_SESSION['UserId'];
+        $groupclass=$_GET['class'];
+        $thingid=$_GET['thingid'];
+       require 'source/ThingOperation.php';
+        if($userid==null)
+            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
+        else{
+        if($thingid==null)
+         echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
+        else{
+         if($groupclass==null)
+                $groupclass=0;
+             elseif ($groupclass=='1')
+                $groupclass=1;
+                else $groupclass=0;
+        }
+        
+            }
+        $thingopera=new ThingOperation();;
+        $thingopera->Init('localhost', 'root', 'root');
+        $thing=$thingopera->getthing($thingid);
+        ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner navBack">
@@ -24,14 +50,17 @@
                                                 class="websiteTitleInNav" /> </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
-                            <li class="active">
+                             <li>
                                 <a href="#">首页</a>
                             </li>
-                            <li>
-                                <a href="#">我的小组</a>
+                           <li>
+                                <a href="allusertopic.html">我的小组</a>
                             </li>
                             <li>
-                                <a href="#">发现小组</a>
+                                <a href="groupclass.html">发现小组</a>
+                            </li>
+                            <li  class="active">
+                                <a href="thingclass.html">发现东西</a>
                             </li>
                             <li>
                                 <a href="#">消息</a>
@@ -40,7 +69,7 @@
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php echo $username;?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
@@ -65,236 +94,66 @@
         </div>
         <!--------------------------- mailinfo page -------------------------->
         <div id="mainWindow" class="container-fluid">
+            <?php 
+             echo "<input type='hidden' name='"."$groupclass"."' id='hidden_class'/>";
+                                echo "<input type='hidden' name='"."$userid"."' id='hidden_userid'/>";
+                                echo "<input type='hidden' name='"."$thingid"."' id='hidden_thingid'/>";
+                                echo "<input type='hidden' name='1' id='hidden_pagenum'/>";?>
             <div class="row-fluid">
                 <div class="span8 content">
-                    <h3>想买</h3>
+                    <h3><?php if($groupclass==1) echo "想卖";
+                        else echo "想买";?></h3>
                     <div class="resultPart">
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-27<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-24<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-22<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-22<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-21<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-21<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-21<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-16<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-12<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-10<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-10<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-08<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-01<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="result">
-                            <div class="resultPic">
-                                <a href="#"><img src="img/Eric.jpg"></a>
-                            </div>
-                            <div class="resultContent">
-                                <div class="resultTitle">
-                                    <h3><a href="">Eric</a></h3>
-                                </div>
-                                <div class="resultInfo">
-                                    <p>
-                                        2013-05-01<span> 想买</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn" id="wanterList-more" type="button">加载更多</button>
+                        <?php
+                        $useropera=new UserOperation();
+                         $useropera->Init('localhost', 'root', 'root');
+                        if($groupclass==0)
+                            $result=$thingopera->getallbuyuser($thingid);
+                        else
+                            $result=$thingopera->getallselluser($thingid);
+                        $num=mysql_num_rows($result);
+                          if($num>10)
+                                        $total=10;
+                                     else
+                                        $total=$num;
+                                    for($i=0;$i<$total;$i=$i+1){
+                                    $rowhere=  mysql_fetch_array($result);
+                                    $userhere=$useropera->getuser($rowhere["userid"]);
+                                    echo "<div class='result'><div class='resultPic'>";
+                                    echo "<a href=personal.html?userid=".$userhere->id."><img src='".$userhere->photourl."'></a>";
+                                    echo "</div><div class='resultContent'><div class='resultTitle'>";
+                                    echo "<h3><a href=personal.html?userid=".$rowhere["id"].">".$userhere->name."</a></h3>";
+                                    echo "</div><div class='resultInfo'><p>";
+                                    
+                                    echo $rowhere["time"];
+                                    if($groupclass==0)
+                                    echo "<span> 想买</span>";
+                                    else
+                                    echo "<span> 想卖</span>";
+                                    echo "</p></div>";
+                                    echo "</div></div>";
+                                    }
+                                  
+                        ?>
+                        <?php
+                            if($num>10)
+                                echo"<button class='btn' id='wanterList-more' type='button' data-loading-text='努力加载中......'>加载更多</button>";
+                            ?>
                     </div>    
                 </div>
                 <div class="span4 aside">
                     <div class="wantSide">
                         <div class="thingHead">
-                            <a class="thingHead-pic" href="#"><img src="img/logo.png"></a>
+                            <?php echo "<a class='thingHead-pic' href=thing.html?thingid=".$thing->id.">";?><?php echo "<img src='".$thing->photourl."'>";?></a>
                             <br>
-                            <a class="thingHead-title" href="#">Java编程思想</a>
+                            <?php echo "<a class='thingHead-title' href=thing.html?thingid=".$thing->id.">";?><?php echo $thing->name;?></a>
                         </div>
                         <div class="thingHref">
                             <div class="thingHref-single">
-                                <a href="#">>想买的人</a>
+                                <?php echo "<a href=wantthing.html?class=0&thingid=".$thingid.">";?>>想买的人</a>
                             </div>
                             <div class="thingHref-single">
-                                <a href="#">>想卖的人</a>
+                                <?php echo "<a href=wantthing.html?class=1&thingid=".$thingid.">";?>>想卖的人</a>
                             </div>
                         </div>
                     </div>
@@ -304,5 +163,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
+        <script src="js/wantthing.js"></script>
     </body>
 </html>

@@ -15,6 +15,10 @@
 	float: left;
 	overflow: hidden;
 }
+.thingContent-head-pic img{
+    height: 140px;
+    width: 140px;
+}
 .thingContent-head-info-name p{
 	color: #666;
 	font-family: Helvetica, Arial, sans-serif;

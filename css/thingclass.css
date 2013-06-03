@@ -78,3 +78,19 @@
 .classInfoOn-class-li a{
 	text-decoration: none;
 }
+.newgroup{
+    margin-top: 20px;
+}
+.newgroup a{
+        text-decoration: none;
+	color: #072;
+	background-color: #edf4ed;
+	padding: 3px;
+	padding-bottom: 5px;
+	border: 1px solid rgba(198,211,205,0.5);
+	border-radius: 4px;
+        cursor: pointer;
+}
+.newgroup a:hover{
+    background-color: #F3FFF9;
+}

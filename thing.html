@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>二手</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -13,6 +13,28 @@
     </head>
 
     <body>
+        <?php
+        session_start();
+        require 'source/ThingOperation.php';
+        require 'source/UserOperation.php';
+        require 'source/ThingCommentOperation.php';
+        $username=$_SESSION['UserName'];
+        $userid=$_SESSION['UserId'];
+        $thingid=$_GET['thingid'];
+        if($thingid==null||$userid==null)
+            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
+        else{
+        $useropera=new UserOperation();
+        $useropera->Init('localhost', 'root', 'root');
+        $thingopera=new ThingOperation();;
+        $thingopera->Init('localhost', 'root', 'root');
+        $thing=$thingopera->getthing($thingid);
+        $isbuy=$thingopera->isinbuy($userid,$thingid);
+        $issell=$thingopera->isinsell($userid,$thingid);
+        $tcopera=new ThingCommentOperation();
+        $tcopera->Init('localhost', 'root', 'root');
+        }
+        ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner navBack">
@@ -24,14 +46,17 @@
                                                 class="websiteTitleInNav" /> </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
-                            <li class="active">
+                            <li>
                                 <a href="#">首页</a>
                             </li>
-                            <li>
-                                <a href="#">我的小组</a>
+                           <li>
+                                <a href="allusertopic.html">我的小组</a>
                             </li>
                             <li>
-                                <a href="#">发现小组</a>
+                                <a href="groupclass.html">发现小组</a>
+                            </li>
+                            <li  class="active">
+                                <a href="thingclass.html">发现东西</a>
                             </li>
                             <li>
                                 <a href="#">消息</a>
@@ -40,7 +65,7 @@
                         <div class="searchinfo">
                             <ul class="nav" id="navU2">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">姓名<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php echo $username;?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的主页</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
@@ -63,97 +88,108 @@
 
             </div>
         </div>
+        <div class="messageDiv templateMsgDiv">
+			<i class="icon icon-circle"></i>
+			<p>恭喜您中了5000万超级大奖</p>
+		</div>
+		<div class="messagesDiv"></div>
         <!--------------------------- mailinfo page -------------------------->
         <div id="mainWindow" class="container-fluid">
+             <?php echo "<input type='hidden' name='"."$userid"."' id='hidden_userid'/>";
+             echo "<input type='hidden' name='1' id='hidden_pagenum'/>";
+          echo "<input type='hidden' name='"."$thingid"."' id='hidden_thingid'/>";?>
             <div class="row-fluid">
                 <div class="span8 content">
                     <div class="thingContent">
                         <div class="thingContent-head">
                             <div class="thingContent-head-pic">
-                                <img src="img/logo.png">
+                                <?php 
+                            echo "<img src='"."$thing->photourl"."' class='img-rounded'>";
+                            ?>
                             </div>
                             <div class="thingContent-head-info">
                                 <div class="thingContent-head-info-name">
-                                    <h3>红烧排骨</h3>
+                                    <h3><?php echo $thing->name;?></h3>
                                     <p>
-                                        类别：<a href="#">食品</a>
+                                        
+                                        类别：<?php echo "<a href='#'>";
+                                        if($thing->class=="1")
+                                        echo "书籍";
+                                        elseif($thing->class=="2")
+                                        echo "电子产品";
+                                        elseif($thing->class=="3")
+                                        echo "生活用品";
+                                        else
+                                        echo "其他";
+                                        echo "</a>";?>
                                     </p>
                                 </div>
                                 <div class="thingContent-head-info-button">
-                                    <a href="#">想买</a>
-                                    <a href="#">想卖</a>
+                                    <?php
+                                    if(!$isbuy&&!$issell){
+                                    echo "<a  href='source/wantbuy.php?thingid=".$thingid."'>想买</a>";
+                                     echo "<a  href='source/wantsell.php?thingid=".$thingid."'>想卖</a>";
+                                    }
+                                     if(!$isbuy&&$issell) 
+                                     {
+                                     echo "<a  href='source/dontwantsell.php?thingid=".$thingid."'>取消想卖</a>";
+                                     }
+                                     if($isbuy&&!$issell) 
+                                     {
+                                     echo "<a href='source/dontwantbuy.php?thingid=".$thingid."'>取消想买</a>";
+                                     }
+                                    ?>
                                 </div>
                             </div>
                         </div>
                         <div class="thingContent-describe">
                             <p class="thingContent-describe-p">描述</p>
-                            <p class="thingContent-describe-pp">东坡肘子是苏东坡愛吃的传统名菜。它有肥而不腻，粑而不烂的特点，色、香、味、形俱佳 ， 有人称其为“美容食品”，外宾赞颂它“可列入世界名菜”。</p>
+                            <p class="thingContent-describe-pp"><?php echo $thing->description;?></p>
                         </div>
                         <div class="thingComment">
                             <p class="thingComment-all">所有评论</p>
                             <div class="thingContent-comment">
                                 <textarea id="thingContent-comment-input" name="thingContent-comment-input" rows="2" placeholder="写下你的评论"></textarea>
                                 <div class="thingContent-comment-button">
-                                    <button class="btn">评论</button>
+                                    <button class="btn" id="addCommentToThing">评论</button>
                                 </div>
                             </div>
-                            <div class="thingComment-single">
-                                <div class="thingComment-Pic">
-                                    <a href="#"><img src="img/Eric.jpg"></a>
-                                </div>
-                                <div class="thingComment-content">
-                                    <div class="thingComment-title">
-                                        <a href="#">PacoIrene</a>
-                                        <span>(2013-09-09 13:24:38)</span>
-                                    </div>
-                                    <div class="thingComment-info">
-                                        <p>专业挽尊20年
-                                        </p>
-                                    </div>
-                                </div>      
-                            </div>
-                            <div class="thingComment-single">
-                                <div class="thingComment-Pic">
-                                    <a href="#"><img src="img/Eric.jpg"></a>
-                                </div>
-                                <div class="thingComment-content">
-                                    <div class="thingComment-title">
-                                        <a href="#">PacoIrene</a>
-                                        <span>(2013-09-09 13:24:38)</span>
-                                    </div>
-                                    <div class="thingComment-info">
-                                        <p>专业挽尊20年
-                                        </p>
-                                    </div>
-                                </div>      
-                            </div>
-                            <div class="thingComment-single">
-                                <div class="thingComment-Pic">
-                                    <a href="#"><img src="img/Eric.jpg"></a>
-                                </div>
-                                <div class="thingComment-content">
-                                    <div class="thingComment-title">
-                                        <a href="#">PacoIrene</a>
-                                        <span>(2013-09-09 13:24:38)</span>
-                                    </div>
-                                    <div class="thingComment-info">
-                                        <p>专业挽尊20年
-                                        </p>
-                                    </div>
-                                </div>      
-                            </div>
-                            <button class="btn" id="thingComment-more" type="button">加载更多</button>  
+                            <?php
+                            $commentgroup=$tcopera->getallcomment($thingid);
+                        $num=mysql_num_rows($commentgroup);
+                        if($num>10)
+                                        $total=10;
+                                     else
+                                        $total=$num;
+                                         for($i=0;$i<$total;$i=$i+1){
+                                    $rowhere=  mysql_fetch_array($commentgroup);
+                                     $userhere=$useropera->getuser($rowhere['userid']);
+                                     echo "<div class='thingComment-single'><div class='thingComment-Pic'>";
+                       echo "<a href='personal.html?userid=".$userhere->id."'><img src='".$userhere->photourl."'></a></div>";
+                                   echo "<div class='thingComment-content'><div class='thingComment-title'>";
+                                    echo "<a href='personal.html?userid=".$userhere->id."'>".$userhere->name."</a>";
+                        echo "<span>(".$rowhere['time'].")</span>";
+                        echo "</div><div class='thingComment-info';><p>";
+                        echo $rowhere["content"];
+                        echo "</p></div></div></div>";
+                                    }?>
+                                    <?php
+                            if($num>10)
+                                echo"<button class='btn' id='thingComment-more' type='button' data-loading-text='努力加载中......'>加载更多</button>";
+                            ?> 
                         </div>
                     </div>
                 </div>
                 <div class="span4 aside">
                     <div class="thingLink">
-                        <div class="thingLink-div"><a href="#">>想买的人</a></div>
-                        <div class="thingLink-div"><a href="#">>想卖的人</a></div>
-                        <div class="thingLink-div"><a href="#">>编辑东西</a></div>
+                        <div class="thingLink-div"><?php echo "<a href=wantthing.html?class=0&thingid=".$thingid.">";?>>想买的人</a></div>
+                        <div class="thingLink-div"><?php echo "<a href=wantthing.html?class=1&thingid=".$thingid.">";?>>想卖的人</a></div>
+                        <div class="thingLink-div"><a href="newthing.html">>创建新东西</a></div>
                     </div>   
                 </div>                   
             </div>
+          <?php $thingopera->close();
+          $tcopera->close();?>
         </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

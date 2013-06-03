@@ -18,7 +18,7 @@ $(document).ready(function(){
                 $("#groupInfoPart-title-input-hidden").val(5);
             }
             else{
-                $("#groupInfoPart-title-input-hidden").val(0);
+                $("#groupInfoPart-title-input-hidden").val(5);
             }
 		$("#selectClass").text("分类：" + $(this).text());
 	});
