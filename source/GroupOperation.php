@@ -31,7 +31,7 @@ class GroupOperation {
         $row=mysql_fetch_array($result);
         if($row==null)
             echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
-        $this->group=new Group($row["name"],$row["description"],$row["photourl"],$row["class"]);
+        $this->group=new Group($row["name"],$row["description"],$row["photourl"],$row["class"],$row["usernum"]);
         $this->group->id=$groupid;
         return $this->group;
     }
@@ -43,15 +43,55 @@ class GroupOperation {
         }
         return $result;
     }
-
+    //用户所有的话题，也就是说那个我的小组点击后的结果
+    public function getusertopicingroup($userid){
+        $sql="SELECT groupid FROM secondhand.usergroup WHERE userid='$userid'";
+        $result=  mysql_query($sql, $this->conn);
+        if(!$result){
+            die('Could not query the sql');
+        }
+        $chars=array();
+        $num=  mysql_num_rows($result);
+        for($i=0;$i!=$num;$i++)
+        {
+            $row=  mysql_fetch_array($result);
+            $chars[]=$row["groupid"];
+        }
+        foreach($chars as $color)  
+        {  
+            $text=$text."'".(string)$color."',";
+        }  
+        $lenght=strlen($text);
+        $text=substr($text,1,$lenght-3);
+        $sql1="SELECT * FROM secondhand.topic WHERE groupid IN ('$text') ORDER BY updatetime DESC";
+        $result1=  mysql_query($sql1, $this->conn);
+        if(!$result1){
+            die('Could not query the sql');
+        }
+        return $result1;
+    }
+    //小组的全部话题
     public function getalltopicforgroup($groupid){
-        $sql="SELECT * FROM secondhand.topic WHERE groupid='$groupid' ORDER BY updatetimE DESC";
+        $sql="SELECT * FROM secondhand.topic WHERE groupid='$groupid' ORDER BY updatetime DESC";
         $result=  mysql_query($sql, $this->conn);
         if(!$result){
             die('Could not query the sql');
         }
         return $result;
     }
+    //分类获得小组
+    public function getgroupbyclass($class){
+        if($class==0)
+             $sql="SELECT * FROM secondhand.group ORDER BY usernum DESC";
+        else
+            $sql="SELECT * FROM secondhand.group WHERE class='$class' ORDER BY usernum DESC";
+         $result=  mysql_query($sql, $this->conn);
+        if(!$result){
+            die('Could not query the sql');
+        }
+        return $result;
+    }
+
     public function getalluseringroup($groupid){
         $sql="SELECT userid FROM secondhand.usergroup WHERE groupid='$groupid'";
         $result=  mysql_query($sql, $this->conn);
@@ -93,5 +133,4 @@ class GroupOperation {
         mysql_close($this->conn);
     }
 }
-
 ?>

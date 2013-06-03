@@ -41,14 +41,14 @@
                                                 class="websiteTitleInNav" /> </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navUl">
-                            <li class="active">
+                            <li>
                                 <a href="#">首页</a>
                             </li>
-                            <li>
-                                <a href="#">我的小组</a>
+                            <li  class="active">
+                                <a href="allusertopic.html">我的小组</a>
                             </li>
                             <li>
-                                <a href="#">发现小组</a>
+                                <a href="groupclass.html">发现小组</a>
                             </li>
                             <li>
                                 <a href="#">消息</a>
@@ -116,17 +116,19 @@
                             </p>
                             <div id="groupBasicTopic-basic-edit">
                                 <?php 
-                                if($decide)
-                                echo "<button class='btn btn-info showandhidden' type='button'>编辑</button>";
-                                else
-                                echo "<button class='btn btn-info showandhidden' type='button' style='display:none;'>编辑</button>";
+                                //if($decide)
+                                //echo "<button class='btn btn-info showandhidden' type='button'>编辑</button>";
+                                //else
+                               // echo "<button class='btn btn-info showandhidden' type='button' style='display:none;'>编辑</button>";
                                 ?>
                             </div>
                         </div>
                         <div class="groupBasicTopic-topic">
                             <div class="input-append">
                                 <input class="span6" id="appendedInputButton" type="text" placeholder="搜索话题">
-                                <button class="btn btn-info" type="button">搜索!</button>
+                                <?php
+                                echo "<a class='btn btn-info' type='button' href='allgrouptopic.html?groupid=".$groupid."'>搜索!</a>";?>
+                                
                             </div>
                             <?php 
                                 if($decide)
@@ -181,7 +183,7 @@
                                 <a href="#"><img src="img/Kenny.jpg" class="img-rounded"></a>
                             </div>-->
                             <div class="groupPerson-grouper">
-                                <p>小组成员</p>
+                                <p><?php echo $group->usernum;?>个小组成员</p>
                                 <div class="groupPerson-grouperList">
                                     <?php
                                     $allgroupuser=$groupopera->getalluseringroup($groupid);

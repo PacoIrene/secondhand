@@ -17,11 +17,13 @@ class Group {
     private $description;
     private $photourl;
     private $class;
-    function __construct($name,$description,$photourl,$class){
+    private $usernum;
+    function __construct($name,$description,$photourl,$class,$usernum){
         $this->name=$name;
         $this->description=$description;
         $this->photourl=$photourl;
         $this->class=$class;
+        $this->usernum=$usernum;
     }
     public function __get($name) {
         return $this->$name;

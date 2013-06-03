@@ -65,6 +65,42 @@ class TopicOperation {
             return $row['id'];
         }
     }
+    //用户发起的话题
+    public function getallusersigntopic($userid){
+        $sql="SELECT * FROM secondhand.topic WHERE userid='$userid' ORDER BY updatetime DESC";
+        $result=  mysql_query($sql,$this->conn);
+        if(!$result){
+            die("Could not query the sql");
+        }
+        return $result;
+    }
+    //用户回复的话题
+    public function getalluserreplytopic($userid){
+        $sql="SELECT topicid FROM secondhand.topicreply WHERE userid='$userid'";
+        $result=  mysql_query($sql, $this->conn);
+        if(!$result){
+            die('Could not query the sql');
+        }
+        $chars=array();
+        $num=  mysql_num_rows($result);
+        for($i=0;$i!=$num;$i++)
+        {
+            $row=  mysql_fetch_array($result);
+            $chars[]=$row["topicid"];
+        }
+        foreach($chars as $color)  
+        {  
+            $text=$text."'".(string)$color."',";
+        }  
+       $lenght=strlen($text);
+        $text=substr($text,1,$lenght-3);
+         $sql1="SELECT * FROM secondhand.topic WHERE id IN ('$text') ORDER BY updatetime DESC";
+         $result1=  mysql_query($sql1, $this->conn);
+        if(!$result1){
+            die('Could not query the sql');
+        }
+    return $result1;
+    }
     public function isin($userid,$topicid){
         $sql="SELECT groupid FROM secondhand.topic WHERE id='$topicid'";
         $result=  mysql_query($sql,$this->conn);
@@ -86,5 +122,4 @@ class TopicOperation {
         mysql_close($this->conn);
     }
 }
-
 ?>

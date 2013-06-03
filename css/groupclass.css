@@ -52,16 +52,24 @@
 	margin-bottom: 5px;
 }
 .resultJoin a{
-	text-decoration: none;
+    text-decoration: none;
 	color: #072;
-	background-color: #edf4ed;
-	padding: 3px;
+        padding: 3px;
 	padding-bottom: 5px;
 	border: 1px solid rgba(198,211,205,0.5);
 	border-radius: 4px;
 }
-.resultJoin a:hover{
+.joinhref{
+	background-color: #edf4ed;	
+}
+.joinhref:hover{
 	background-color: #F3FFF9;
+}
+.exithref{
+    background-color: #FFF4E8;
+}
+.exithref:hover{
+    background-color: #FFF4F9;
 }
 #grouperList-more{
 	width: 100%;

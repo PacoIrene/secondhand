@@ -15,14 +15,12 @@
     <body>
          <?php
         session_start();
-        require 'source/TopicOperation.php';
+        require 'source/GroupOperation.php';
         $username=$_SESSION['UserName'];
         $userid=$_SESSION['UserId'];
         if($userid==null)
             echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
         else{
-        $topicopera=new TopicOperation();
-        $topicopera->Init('localhost', 'root', 'root');
         $groupopera=new GroupOperation();
         $groupopera->Init('localhost', 'root', 'root');
             }
@@ -41,7 +39,7 @@
                             <li>
                                 <a href="#">首页</a>
                             </li>
-                            <li class="active">
+                            <li  class="active">
                                 <a href="allusertopic.html">我的小组</a>
                             </li>
                             <li>
@@ -90,7 +88,7 @@
             <div class="row-fluid">
                 <div class="span8 content">
                     <div class="topicList">
-                        <h3>我发起的话题</h3>
+                        <h3>全部小组话题</h3>
                         <table class="table topicTable">
                                 <thead>
                                     <tr>
@@ -102,7 +100,7 @@
                                 </thead>
                                 <tbody id="topicTableBody">
                                    <?php
-                                    $allgrouptopic=$topicopera->getallusersigntopic($userid);
+                                    $allgrouptopic=$groupopera->getusertopicingroup($userid);
                                     $num=mysql_num_rows($allgrouptopic);
                                     if($num>10)
                                         $total=10;
@@ -144,6 +142,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
-        <script src="js/mytopic.js"></script>
+        <script src="js/allusertopic.js"></script>
     </body>
 </html>

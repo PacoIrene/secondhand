@@ -2,17 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/* 
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 $(document).ready(function(){
      $("#topicMore").click(function(){
-    var pagenum=Number($("#hidden_pagenum").attr("name"));
-        var groupid=$("#hidden_groupid").attr("name");
+         var pagenum=Number($("#hidden_pagenum").attr("name"));
+        var userid=$("#hidden_userid").attr("name");
         $("#topicMore").button('loading');
-        $.ajax({ 
+                $.ajax({ 
                 type: "POST", 
-                url: "source/moregrouptopic.php",
+                url: "source/moreusertopic.php",
                 dataType: "json", 
                 data: {
-                    "g":groupid,
+                    "u":userid,
                     "p":pagenum
                 }, 
                 success: function(json){
@@ -31,7 +36,7 @@ $(document).ready(function(){
                                     text+=json[o]+"</a></td>";
                                 }
                                 else if(num%6==2){
-                                    text+="<td><a href='personal.html?userid="+json[o]+"'>";
+                                    text+="<td><a href='group.html?groupid="+json[o]+"'>";
                                 }
                                 else if(num%6==3){
                                     text+=json[o]+"</a></td>";
@@ -60,7 +65,7 @@ $(document).ready(function(){
                 {
                     newMsgDiv("#dd6a45","网络环境异常.");
                 }
-            }); 
      });
 });
 
+});

@@ -41,7 +41,7 @@
                             <li>
                                 <a href="#">首页</a>
                             </li>
-                            <li class="active">
+                            <li  class="active">
                                 <a href="allusertopic.html">我的小组</a>
                             </li>
                             <li>
@@ -90,7 +90,7 @@
             <div class="row-fluid">
                 <div class="span8 content">
                     <div class="topicList">
-                        <h3>我发起的话题</h3>
+                        <h3>我回应过的话题</h3>
                         <table class="table topicTable">
                                 <thead>
                                     <tr>
@@ -102,7 +102,7 @@
                                 </thead>
                                 <tbody id="topicTableBody">
                                    <?php
-                                    $allgrouptopic=$topicopera->getallusersigntopic($userid);
+                                    $allgrouptopic=$topicopera->getalluserreplytopic($userid);
                                     $num=mysql_num_rows($allgrouptopic);
                                     if($num>10)
                                         $total=10;
@@ -144,6 +144,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
-        <script src="js/mytopic.js"></script>
+        <script src="js/myreply.js"></script>
     </body>
 </html>

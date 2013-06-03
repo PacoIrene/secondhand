@@ -21,7 +21,6 @@ $(document).ready(function(){
                         var totalnumnow=0;
                         for(var o in json){
                             var num=Number(o);
-                            alert(num);
                             if(o!="success")
                             {
                                 totalnumnow+=1;
@@ -35,7 +34,6 @@ $(document).ready(function(){
                                 }
                             }
                         }
-                        alert(text);
                         if(totalnumnow/3<10)
                             {
                                 $("#groupPerson-grouperList-more").hide();
@@ -114,6 +112,7 @@ $(document).ready(function(){
             }); 
     });
     $("#joinGroup").click(function(){
+        $(this).addClass("disabled");
         var groupid=$("#hidden_groupid").attr("name");
         var userid=$("#hidden_userid").attr("name");
         if($("#joinGroup").hasClass("btn-success"))
@@ -167,7 +166,7 @@ $(document).ready(function(){
                 }
             }); 
         }
-       
+       $(this).removeClass("disabled");
     }); 
 });
 

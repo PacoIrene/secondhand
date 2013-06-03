@@ -3,16 +3,18 @@
  * and open the template in the editor.
  */
 $(document).ready(function(){
-     $("#topicMore").click(function(){
-    var pagenum=Number($("#hidden_pagenum").attr("name"));
-        var groupid=$("#hidden_groupid").attr("name");
-        $("#topicMore").button('loading');
-        $.ajax({ 
+    
+   
+    $("#grouperList-more").click(function(){
+       var pagenum=Number($("#hidden_pagenum").attr("name"));
+        var classc=$("#hidden_class").attr("name");
+        $("#grouperList-more").button('loading');
+                $.ajax({ 
                 type: "POST", 
-                url: "source/moregrouptopic.php",
+                url: "source/moregroup.php",
                 dataType: "json", 
                 data: {
-                    "g":groupid,
+                    "c":classc,
                     "p":pagenum
                 }, 
                 success: function(json){
@@ -25,31 +27,31 @@ $(document).ready(function(){
                             {
                                 totalnumnow+=1;
                                 if(num%6==0){
-                                    text+="<tr><td><a href='singletopic.html?topicid="+json[o]+"'>";
+                                    text+="<div class='result'><div class='resultPic'><a href=group.html?groupid="+json[o];
                                 }
                                 else if(num%6==1){
-                                    text+=json[o]+"</a></td>";
+                                    text+="><img src='"+json[o]+"'></a></div><div class='resultContent'><div class='resultTitle'>";
                                 }
                                 else if(num%6==2){
-                                    text+="<td><a href='personal.html?userid="+json[o]+"'>";
+                                    text+="<h3><a href=group.html?groupid="+json[o]+">";
                                 }
                                 else if(num%6==3){
-                                    text+=json[o]+"</a></td>";
+                                    text+=json[o]+"</a></h3></div><div class='resultInfo'><p>";
                                 }
                                 else if(num%6==4){
-                                     text+="<td>"+json[o]+"</td>";
+                                     text+=json[o]+"</p></div><div class='resultJoin'>";
                                 }
                                 else if(num%6==5){
-                                   text+="<td>"+json[o]+"</td></tr>";
+                                   text+="<a class='joinhref' id='"+json[o]+"'  href='javascript:;' name='"+json[o]+"'>+ 加入小组</a></div></div></div>";
                                 }
                             }
                         }
                         if(totalnumnow/6<10)
                             {
-                                $("#topicMore").hide();
+                                $("#grouperList-more").hide();
                             }
-                        $("#topicTableBody").append(text);
-                        $("#topicMore").button('reset');
+                        $("#grouperList-more").before(text);
+                        $("#grouperList-more").button('reset');
                         $("#hidden_pagenum").attr("name",String(pagenum+1));
                     }else{ 
                         newMsgDiv("#dd6a45","网络环境异常.");
@@ -60,7 +62,12 @@ $(document).ready(function(){
                 {
                     newMsgDiv("#dd6a45","网络环境异常.");
                 }
-            }); 
-     });
+     }); 
+    });
+//    $(".resultJoin>a").live("click",function(){
+//        var groupid=$(this).attr("name");
+//        alert(groupid);
+//        alert("hello");
+//    });
 });
 
