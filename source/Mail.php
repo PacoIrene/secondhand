@@ -18,14 +18,14 @@ class Mail {
     private $title;
     private $content;
     private $time;
-    private $delete;
-    function __construct($sendid,$receiveid,$title,$content,$time,$delete) {
+    private $deleted;
+    function __construct($sendid,$receiveid,$title,$content,$time,$deleted) {
         $this->sendid=$sendid;
         $this->receiveid=$receiveid;
         $this->title=$title;
         $this->time=$time;
         $this->content=$content;
-        $this->delete=$delete;
+        $this->deleted=$deleted;
     }
     public function __get($name) {
         return $this->$name;

@@ -1,8 +1,37 @@
 <!DOCTYPE html>
+ <?php
+        session_start();
+        $username=$_SESSION['UserName'];
+        $userid=$_SESSION['UserId'];
+        $mailid=$_GET['mailid'];
+        require 'source/MailOperation.php';
+       require 'source/UserOperation.php';
+        if($userid==null)
+            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
+        else{
+        if($mailid==null)
+            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=inoutbox.html\">";
+          $useropera=new UserOperation();
+        $useropera->Init('localhost', 'root', 'root');
+        $mailopera=new MailOperation($mailid);
+        
+        $mailopera->Init('localhost', 'root', 'root');
+        $mailhere=$mailopera->getsinglemail($mailid);
+        if($mailhere->title==null)
+         echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
+        $issender=$mailopera->issender($mailid,$userid);
+        $isreceiver=$mailopera->isreceived($mailid,$userid);
+        if($issender)
+        $useridnowhere=$mailhere->receiveid;
+        if($isreceiver)
+        $useridnowhere=$mailhere->sendid;
+        $mustuser=$useropera->getuser($useridnowhere);
+            }
+        ?>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iSharing - 搜索结果</title>
+        <title>二手</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
@@ -13,26 +42,6 @@
     </head>
 
     <body>
-         <?php
-        session_start();
-        $username=$_SESSION['UserName'];
-        $userid=$_SESSION['UserId'];
-        $nowuserid=$_GET['userid'];
-       require 'source/UserOperation.php';
-        if($userid==null)
-            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
-        else{
-           if($nowuserid==null)
-        $nowuserid=$userid;
-        if($userid==$nowuserid)
-        $isown=true;
-        else
-        $isown=false;
-         $useropera=new UserOperation();
-        $useropera->Init('localhost', 'root', 'root');
-        $user=$useropera->getuser($nowuserid);
-            }
-        ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner navBack">
@@ -53,11 +62,11 @@
                             <li>
                                 <a href="groupclass.html">发现小组</a>
                             </li>
-                            <li  class="active">
+                            <li>
                                 <a href="thingclass.html">发现东西</a>
                             </li>
-                            <li>
-                                <a href="#">消息</a>
+                            <li  class="active">
+                                <a href="inoutbox.html">消息</a>
                             </li>
                         </ul>
                         <div class="searchinfo">
@@ -66,9 +75,9 @@
                                     <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><?php echo $username;?><b class="caret"></b></a>
                                     <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop5">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="personal.html">我的主页</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">我的账号</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="infochange.html">我的账号</a></li>
                                         <li role="presentation" class="divider"></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">退出</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="source/loginout.php">退出</a></li>
                                     </ul>
                                 </li>
                                 <li><form class="form-search searchFormInNav">
@@ -90,20 +99,22 @@
         <div id="mainWindow" class="container">
             <div class="row-fluid">
               <div class="mailContainer">
-                <h3>你最近好吗？</h3>
+                <h3><?php echo $mailhere->title;?></h3>
                 <div class="mailInfoBox">
-                    <a href="#"><img src="img/Eric.jpg" class="img-rounded"></a>
+                    <?php echo "<a title='".$mustuser->name."' href='psersonal.html?userid=".$mustuser->id."'><img src='".$mustuser->photourl."' class='img-rounded'></a>";?>
                     <div class="mailInfoBox-titleAndDate">
-                        <p style="margin-bottom:5px;">标题:<span>你最近好吗？</span></p>
-                        <p>时间:<span>2013-05-04 12:34</span></p>
+                        <p style="margin-bottom:5px;">标题:<span><?php echo $mailhere->title;?></span></p>
+                        <p>时间:<span><?php echo $mailhere->time;?></span></p>
                         <p class="resultHead"></p>
                     </div>
-                    <p class="mailInfoBox-mail" id="mailInfoBox-mail-id">在旅程结束N个月后，终于开始记录我的第一次美国之行，其间几欲逃避，可念及记忆力已大不如前，再不抢救，便会如同《献给阿尔吉侬的花束》里智力进入衰退期的查理·高登一般，陷入对垂暮的恐惧。简单一些，把还能够记起的事情来一篇流水帐，也好过烂在回忆里。</p>
+                    <p class="mailInfoBox-mail" id="mailInfoBox-mail-id"><?php echo $mailhere->content;?></p>
                 </div>
                 <p class="resultFooter"></p>
                 <div class="mailInfoBoxFooter">
-                    <button class="btn btn-success" type="button">回信息</button>
-                    <button class="btn" type="button">删除</button>
+                    <?php if($isreceiver) echo "<a href='sendmail.html?userid=".$mustuser->id."' class='btn btn-success' type='button'>回信息 </a>";?>
+                  <?php if($issender) echo "<a href='sendmail.html?userid=".$mustuser->id."' class='btn btn-success' type='button'>继续发信息 </a>";?>
+                  <?php echo "<a class='btn' type='button' href='source/deletemail.php?mailid=".$mailid."'>删除</a>";?>  
+                  
                   </div>
               </div>
             </div>

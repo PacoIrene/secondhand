@@ -18,7 +18,7 @@ if($char){
     echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=../personal.html\">";
 }
 else{
-    echo 'error';
+   echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=../index.html\">";
 }
 $useropera->close();
 ?>

@@ -17,6 +17,7 @@ if($passwordr==$password){
    $useropera->Init("localhost", "root", "root");
    $useropera->updateuser($userid, $name, $password, $photourl);
    $useropera->close();
+   $_SESSION['UserName']=$name;
    echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=../personal.html\">";
 }
 else{

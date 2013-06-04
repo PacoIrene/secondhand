@@ -1,1 +1,1 @@
-<?php echo "<a href='mygroup.html?userid=".$nowuserid."'>";?>
+<?php echo "<a href='psersonal.html?userid=".$mustuser->id."'><img src='".$mustuser->photourl."' class='img-rounded'></a>";?>
