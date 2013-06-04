@@ -70,8 +70,8 @@
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="source/loginout.php">退出</a></li>
                                     </ul>
                                 </li>
-                                <li><form class="form-search searchFormInNav">
-                                        <input type="text" id="inp-query" class="input-medium search-query"
+                                <li><form class="form-search searchFormInNav" action="source/search.php" method="POST">
+                                        <input type="text" id="inp-query" class="input-medium search-query" name="searchinputvalue"
                                                placeholder="搜索你要的">
                                         <button type="submit" class="btn">
                                             <i class="icon-search"></i>
@@ -103,9 +103,9 @@
                                     <label for="topicInput-area-input" style="vertical-align:top;">内容:</label>
                                     <textarea id="topicInput-area-input" name="titleAndMail-mail-input" rows="15"></textarea>
                                 </div>
-                                <div class="topicInput-href">
+<!--                                <div class="topicInput-href">
                                     <a href="#">添加图片</a>
-                                </div>
+                                </div>-->
                                 <div class="topicInput-button">
                                     <button class="btn btn-success" type="submit">新建话题</button>
                                 </div>

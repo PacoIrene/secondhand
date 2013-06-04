@@ -137,6 +137,15 @@ class GroupOperation {
         else
             return true;
     }
+    public function searchgroup($value){
+          $sql="SELECT * FROM secondhand.group WHERE name like '%$value%'";
+        $result=  mysql_query($sql, $this->conn);
+        if(!$result){
+            die('Could not query the sql');
+        }
+        return $result;
+    }
+
     public function close(){
         mysql_close($this->conn);
     }

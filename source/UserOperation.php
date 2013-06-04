@@ -65,6 +65,14 @@ class UserOperation {
             die("Could not query the sql");
         }
     }
+    public function searchuser($value){
+        $sql="SELECT * FROM secondhand.user WHERE name like '%$value%'";
+        $result=  mysql_query($sql, $this->conn);
+        if(!$result){
+            die('Could not query the sql');
+        }
+        return $result;
+    }
 
     public function close(){
          mysql_close($this->conn);

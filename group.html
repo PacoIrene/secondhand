@@ -68,8 +68,8 @@
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="source/loginout.php">退出</a></li>
                                     </ul>
                                 </li>
-                                <li><form class="form-search searchFormInNav">
-                                        <input type="text" id="inp-query" class="input-medium search-query"
+                                <li><form class="form-search searchFormInNav" action="source/search.php" method="POST">
+                                        <input type="text" id="inp-query" class="input-medium search-query" name="searchinputvalue"
                                                placeholder="搜索你要的">
                                         <button type="submit" class="btn">
                                             <i class="icon-search"></i>
@@ -128,9 +128,9 @@
                         </div>
                         <div class="groupBasicTopic-topic">
                             <div class="input-append">
-                                <input class="span6" id="appendedInputButton" type="text" placeholder="搜索话题">
+                                <!--<input class="span6" id="appendedInputButton" type="text" placeholder="搜索话题">-->
                                 <?php
-                                echo "<a class='btn btn-info' type='button' href='allgrouptopic.html?groupid=".$groupid."'>全部!</a>";?>
+                                echo "<a class='btn btn-info' style='border-radius:4px;margin-right:150px;' type='button' href='allgrouptopic.html?groupid=".$groupid."'>全部话题</a>";?>
                                 
                             </div>
                             <?php 

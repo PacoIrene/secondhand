@@ -135,6 +135,14 @@ class ThingOperation {
         }
         return $result;
     }
+      public function searchthing($value){
+          $sql="SELECT * FROM secondhand.thing WHERE name like '%$value%'";
+        $result=  mysql_query($sql, $this->conn);
+        if(!$result){
+            die('Could not query the sql');
+        }
+        return $result;
+    }
     public function close(){
         mysql_close($this->conn);
     }
