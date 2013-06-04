@@ -42,7 +42,7 @@ $(document).ready(function(){
                                      text+=json[o]+"</p></div><div class='resultJoin'>";
                                 }
                                 else if(num%6==5){
-                                   text+="<a class='joinhref' id='"+json[o]+"'  href='javascript:;' name='"+json[o]+"'>+ 加入小组</a></div></div></div>";
+                                   text+="<a class='joinhref' id='"+json[o]+"'  href='group.html?groupid="+json[o]+"' name='"+json[o]+"'>> 进入小组</a></div></div></div>";
                                 }
                             }
                         }

@@ -15,6 +15,13 @@ $photourl="img/logo.png";
 if($passwordr==$password){
    $useropera=new UserOperation();
    $useropera->Init("localhost", "root", "root");
+   $user=$useropera->getuser($userid);
+   if($password==null)
+       $password=$user->password;
+   if($name==null)
+       $name=$user->name;
+   if($photourl==null)
+       $photourl=$user->photourl;
    $useropera->updateuser($userid, $name, $password, $photourl);
    $useropera->close();
    $_SESSION['UserName']=$name;

@@ -30,9 +30,9 @@ if($userid!=null){
         $result2 = mysql_query($sql2, $conn);
     }
     if (!$result2&&!$result1) {
-            //echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=../lose.html\">";
+            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=../lose.html\">";
         } else {
-            //echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=../inoutbox.html\">";
+            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=../inoutbox.html\">";
         }
         
 }

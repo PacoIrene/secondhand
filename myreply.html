@@ -103,7 +103,7 @@
                                         <th>最后回应时间</th>                 
                                     </tr>
                                 </thead>
-                                <tbody id="topicTableBody">
+                                <tbody id="topicTableBody" style="font-size: 13px;">
                                    <?php
                                     $allgrouptopic=$topicopera->getalluserreplytopic($userid);
                                     $num=mysql_num_rows($allgrouptopic);
@@ -135,6 +135,7 @@
                     <div class="groupLink">
                         <div class="groupLink-div"> 
                         </div>
+                        <div class="groupLink-div"><a href="mygroup.html">>我加入的小组</a></div>
                         <div class="groupLink-div"><a href="mytopic.html">>我发起的话题</a></div>
                         <div class="groupLink-div"><a href="myreply.html">>我回应过的话题</a></div>
                         <div class="groupLink-div"><a href="newgroup.html">>创建小组</a></div>

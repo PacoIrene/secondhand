@@ -130,7 +130,7 @@
                             <div class="input-append">
                                 <input class="span6" id="appendedInputButton" type="text" placeholder="搜索话题">
                                 <?php
-                                echo "<a class='btn btn-info' type='button' href='allgrouptopic.html?groupid=".$groupid."'>搜索!</a>";?>
+                                echo "<a class='btn btn-info' type='button' href='allgrouptopic.html?groupid=".$groupid."'>全部!</a>";?>
                                 
                             </div>
                             <?php 
@@ -148,7 +148,7 @@
                                         <th>最后回应时间</th>                 
                                     </tr>
                                 </thead>
-                                <tbody id="topicTableBody">
+                                <tbody id="topicTableBody" style="font-size: 13px;">
                                     <?php
                                     $allgrouptopic=$groupopera->getalltopicforgroup($groupid);
                                     $num=mysql_num_rows($allgrouptopic);

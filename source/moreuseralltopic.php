@@ -26,7 +26,7 @@ $result=  mysql_query($sql, $conn);
         for($i=0;$i!=$num;$i++)
         {
             $row=  mysql_fetch_array($result);
-            $chars[]=$row["topicid"];
+            $chars[]=$row["groupid"];
         }
         foreach($chars as $color)  
         {  

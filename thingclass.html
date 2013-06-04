@@ -131,8 +131,8 @@
                                     echo "<h3><a href=thing.html?thingid=".$rowhere["id"].">".$rowhere["name"]."</a></h3>";
                                     echo "</div><div class='resultInfo'><p>";
                                     $length=strlen($rowhere["description"]);
-                                    if($length>60)
-                                        $pcontent=substr($rowhere["description"],0,60)."...";
+                                    if($length>57)
+                                        $pcontent=substr($rowhere["description"],0,57)."...";
                                     else
                                         $pcontent=$rowhere["description"];
                                     echo $pcontent;

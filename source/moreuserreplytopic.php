@@ -17,7 +17,7 @@ if (!$conn) {
         }
 mysql_select_db("secondhand", $conn);
 $sql="SELECT topicid FROM secondhand.topicreply WHERE userid='$u'";
- $result=  mysql_query($sql, $this->conn);
+ $result=  mysql_query($sql, $conn);
         if(!$result){
             die('Could not query the sql');
         }
@@ -25,8 +25,9 @@ $sql="SELECT topicid FROM secondhand.topicreply WHERE userid='$u'";
         $num=  mysql_num_rows($result);
         for($i=0;$i!=$num;$i++)
         {
+            
             $row=  mysql_fetch_array($result);
-            $chars[]=$row["groupid"];
+            $chars[]=$row["topicid"];
         }
         foreach($chars as $color)  
         {  
