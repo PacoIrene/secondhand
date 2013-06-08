@@ -11,7 +11,7 @@ $userid=$_SESSION['UserId'];
 $name=$_POST['registerFormname'];
 $password=$_POST['registerFormpassword'];
 $passwordr=$_POST['registerFormpasswordr'];
-$photourl="img/logo.png";
+$photourl=$_POST['hidden_photourl'];
 if($passwordr==$password){
    $useropera=new UserOperation();
    $useropera->Init("localhost", "root", "root");

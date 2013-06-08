@@ -132,8 +132,8 @@
                                     echo "<h3><a href=group.html?groupid=".$rowhere["id"].">".$rowhere["name"]."</a></h3>";
                                     echo "</div><div class='resultInfo'><p>";
                                     $length=strlen($rowhere["description"]);
-                                    if($length>42)
-                                        $pcontent=substr($rowhere["description"],0,42)."...";
+                                    if($length>36)
+                                        $pcontent=substr($rowhere["description"],0,36)."...";
                                     else
                                         $pcontent=$rowhere["description"];
                                     echo $pcontent;

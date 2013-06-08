@@ -76,5 +76,9 @@ $(document).ready(function(){
 	else
 		return true;
 }
+$("#uploadPic").click(function(){
+    $("#file4").click();
+    var filename=$("#file4").attr("name");
+});
 });
 

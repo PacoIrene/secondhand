@@ -143,6 +143,13 @@ class ThingOperation {
         }
         return $result;
     }
+     public function updatepicforuser($thingid,$path){
+        $sql="UPDATE secondhand.thing SET photourl='$path' WHERE id='$thingid'";
+         $result=  mysql_query($sql,$this->conn);
+        if(!$result){
+            die("Could not query the sq2l");
+        }
+    }
     public function close(){
         mysql_close($this->conn);
     }

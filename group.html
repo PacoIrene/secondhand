@@ -119,10 +119,10 @@
                             </p>
                             <div id="groupBasicTopic-basic-edit">
                                 <?php 
-                                //if($decide)
-                                //echo "<button class='btn btn-info showandhidden' type='button'>编辑</button>";
-                                //else
-                               // echo "<button class='btn btn-info showandhidden' type='button' style='display:none;'>编辑</button>";
+                                if($decide)
+                                echo "<a class='btn btn-info showandhidden' href='picupload.html?groupid=".$groupid."' type='button' style='margin-right:20px;'>更新头像</a>";
+                                else
+                                echo "<button class='btn btn-info showandhidden' type='button' style='display:none;'>更新头像</button>";
                                 ?>
                             </div>
                         </div>

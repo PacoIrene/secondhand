@@ -19,17 +19,40 @@
         $username=$_SESSION['UserName'];
         $userid=$_SESSION['UserId'];
         $groupid=$_GET['groupid'];
-        if($groupid==null||$userid==null)
-            echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
-        else{
-        
-        $groupopera=new GroupOperation();;
-        $groupopera->Init('localhost', 'root', 'root');
-        $group=$groupopera->getgroup($groupid);
-        $decide=$groupopera->isin($userid,$group->id);
-        if(!$decide){
-        echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=lose.html\">";
-            }
+        $image="<img style='margin-left:20px;' src='img/logo.png'> ";
+        if($userid==null||$groupid==null)
+        echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
+        $useropera=new GroupOperation();
+        $useropera->Init('localhost', 'root', 'root');
+        $session_id=$userid;//  Session ID
+        $path = "upload/";
+        $valid_formats = array("jpg", "png", "gif", "bmp");
+        if(isset($_POST['submit']))
+        {
+        $name = $_FILES['photoimg']['name'];
+        $size = $_FILES['photoimg']['size'];
+        if(strlen($name))
+        {
+        list($txt, $ext) = explode(".", $name);
+        if(in_array($ext,$valid_formats) && $size<(250*1024))
+        {
+        $actual_image_name = time().substr($txt, 5).".".$ext;
+        $tmp = $_FILES['photoimg']['tmp_name'];
+        if(move_uploaded_file($tmp, $path.$actual_image_name))
+        {
+        $pathall=$path.$actual_image_name;
+        $useropera->updatepicforuser($groupid,$pathall);
+       // mysql_query("UPDATE users SET profile_image='$actual_image_name' WHERE uid='$session_id'");
+        $image="<img style='margin-left:20px;width:140px;height:140px;' src='upload/".$actual_image_name."' id=\"photo\" >";
+        }
+        else
+        echo "failed";
+        }
+        else
+        echo "Invalid file formats..!"; 
+        }
+        else
+        echo "Please select image..!";
         }
         ?>
         <!--------------------------- navigation bar -------------------------->
@@ -56,7 +79,7 @@
                                 <a href="thingclass.html">发现东西</a>
                             </li>
                             <li>
-                               <a href="inoutbox.html">消息</a>
+                                <a href="inoutbox.html">消息</a>
                             </li>
                         </ul>
                         <div class="searchinfo">
@@ -90,59 +113,31 @@
             <div class="row-fluid">
                 <div class="span8 content">
                     <div class="topicInput">
-                        <h3>新建小组话题</h3>
-                        <div class="topicInputAll">
-                            <form action="source/newtopic.php" method="POST">
-                                <div class="topicInput-title">
-                                    <label for="topicInput-title-input">标题:</label>
-                                    <?php echo "<input type='hidden' name='hidden_groupid' id='hidden_groupid' value='"."$groupid"."'/>";?>
-                                
-                                    <input id="topicInput-title-input" class="input-xxlarge" maxlength="20" type="text" name="topicInput-title-input" placeholder="写入你的标题" >
-                                </div>
-                                <div class="topicInput-area">
-                                    <label for="topicInput-area-input" style="vertical-align:top;">内容:</label>
-                                    <textarea id="topicInput-area-input" name="titleAndMail-mail-input" rows="15"></textarea>
-                                </div>
-<!--                                <div class="topicInput-href">
-                                    <a href="#">添加图片</a>
-                                </div>-->
-                                <div class="topicInput-button">
-                                    <button class="btn btn-success" type="submit">新建话题</button>
-                                </div>
-                            </form>
-                        </div>                        
+                        <h3>上传头像</h3>
+                        <?php echo $image; ?>
+                        <div id="thumbs" ></div>
+<div >
+                        <form style=" display: block; margin-top: 30px;margin-left: 20px;" id="cropimage" method="post" enctype="multipart/form-data">
+                            上传你的图片<input type="file" name="photoimg" id="photoimg" />
+                            <input type="hidden" name="image_name" id="image_name" value="" />
+                            <input type="submit" name="submit" value="提交" /> <br />
+                            <div style="font-size:11px">最大 250 KB</div>
+                        </form>  
+    </div>
                     </div>
                 </div>
                 <div class="span4 aside">
-                    <div class="groupInfo">
-                        <div class="groupInfo-Pic">
-                            <?php 
-                            echo "<a href='group.html?groupid="."$groupid"."'><img src='"."$group->photourl"."'></a>";
-                            ?>
-                        </div>
-                        <div class="groupInfo-content">
-                            <div class="groupInfo-title">
-                                 
-                                <p><?php 
-                            echo "<a href='group.html?groupid="."$groupid"."'>"."$group->name"."</a>";
-                            ?>
-                                </p>
-                            </div>
-                            <div class="groupInfo-href">
-                                <?php 
-                            echo "<a href='group.html?groupid="."$groupid"."'>回到小组</a>";
-                            ?>
-                            </div>
-                            <div class="groupInfo-href">
-                                <a href="#">查看全部话题</a>
-                            </div>
-                        </div>                        
-                    </div>                      
+                    <div style="margin-top: 200px;padding: 20px;">
+                        <?php echo "<a style='text-decoration: none;color: #259;cursor: pointer;' href='group.html?groupid=".$groupid."'><返回小组</a>";?>
+                        
+                    </div>
                 </div>                   
             </div>
         </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
+        <script src="js/jquery.imgareaselect.pack.js"></script>
+        <script src="js/picupload.js"></script>
     </body>
 </html>

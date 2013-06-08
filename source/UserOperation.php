@@ -73,6 +73,13 @@ class UserOperation {
         }
         return $result;
     }
+    public function updatepicforuser($userid,$path){
+        $sql="UPDATE secondhand.user SET photourl='$path' WHERE id='$userid'";
+         $result=  mysql_query($sql,$this->conn);
+        if(!$result){
+            die("Could not query the sql");
+        }
+    }
 
     public function close(){
          mysql_close($this->conn);

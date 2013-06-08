@@ -145,7 +145,13 @@ class GroupOperation {
         }
         return $result;
     }
-
+ public function updatepicforuser($groupid,$path){
+        $sql="UPDATE secondhand.group SET photourl='$path' WHERE id='$groupid'";
+         $result=  mysql_query($sql,$this->conn);
+        if(!$result){
+            die("Could not query the sql");
+        }
+    }
     public function close(){
         mysql_close($this->conn);
     }

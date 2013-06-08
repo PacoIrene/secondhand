@@ -18,6 +18,7 @@
         $username=$_SESSION['UserName'];
         $userid=$_SESSION['UserId'];
         require 'source/UserOperation.php';
+        $image="<img class='img-rounded' src='img/logo.png'> ";
         if($userid==null)
         echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
         else{
@@ -28,7 +29,36 @@
         if($user->name==null)
         echo "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"0;URL=index.html\">";
         }
-
+        $session_id=$userid;//  Session ID
+        $path = "upload/";
+        $valid_formats = array("jpg", "png", "gif", "bmp");
+        if(isset($_POST['submit']))
+        {
+        $name = $_FILES['photoimg']['name'];
+        $size = $_FILES['photoimg']['size'];
+        if(strlen($name))
+        {
+        list($txt, $ext) = explode(".", $name);
+        if(in_array($ext,$valid_formats) && $size<(250*1024))
+        {
+        $actual_image_name = time().substr($txt, 5).".".$ext;
+        $tmp = $_FILES['photoimg']['tmp_name'];
+        if(move_uploaded_file($tmp, $path.$actual_image_name))
+        {
+        $pathall=$path.$actual_image_name;
+       // $useropera->updatepicforuser($session_id,$pathall);
+       // mysql_query("UPDATE users SET profile_image='$actual_image_name' WHERE uid='$session_id'");
+        $image="<img style='' class='img-rounded' src='upload/".$actual_image_name."' id=\"photo\" >";
+        }
+        else
+        echo "failed";
+        }
+        else
+        echo "Invalid file formats..!"; 
+        }
+        else
+        echo "Please select image..!";
+        }
         ?>
         <!--------------------------- navigation bar -------------------------->
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -103,6 +133,8 @@
                             <div class="control-group passwordRControl">
                                 <label class="control-label" for="inputPassword">密码:</label>
                                 <div class="controls">
+                                    <?php echo "<input type='hidden' name='hidden_photourl' value='".$pathall."'>"?>
+                                    
                                     <input type="password" id="passwordInputR" placeholder="密码" name="registerFormpassword">
                                 </div>
                             </div>
@@ -112,15 +144,23 @@
                                     <input type="password" id="passwordInputR2" placeholder="确认密码" name="registerFormpasswordr">
                                 </div>
                             </div>
-                            <div class="thingInput-href">
-                                <label>图标:</label>
-                                <img src="img/logo.png" class="img-rounded">
-                                <button class="btn" type="button">添加图标</button>
+<!--                             <div class="thingInput-href">
+                                <label>头像:</label>-->
+                               
+                            <!--</div>-->
+                            <div  style="margin-top: 60px;" class="control-group">
+                                <button class="btn"  type="submit">确认修改</button>
                             </div>
-                            <div class="control-group">
-                                <button class="btn" type="submit">确认修改</button>
-                            </div>
-                        </form>
+                            </form>
+<!--                            <form style=" display: block;padding-top: -40px; margin-top: -100px;" id="cropimage" method="post" enctype="multipart/form-data">
+                            上传头像：<input style="margin-left: 10px;" type="file" name="photoimg" id="photoimg" />
+                            <input type="hidden" name="image_name" id="image_name" value="" />
+                            <input type="submit" name="submit" value="提交" /> <br />
+                            <div style="margin-left: 80px;font-size:11px">最大 250 KB</div>
+                        </form>  -->
+                           
+                            
+                        
                     </div>
                 </div>
                 <div class="span4 aside">

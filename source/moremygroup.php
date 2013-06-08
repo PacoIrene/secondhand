@@ -31,7 +31,12 @@ $result=  mysql_query($sql,$conn);
                 $grouphere=$groupopera->getgroup($row['groupid']); 
                 $arr[]=($grouphere->photourl);
                 $arr[]=($row["groupid"]);
-                $arr[]=($grouphere->name);
+                $length=strlen($grouphere->name);
+                                    if($length>9)
+                                        $pcontent=substr($grouphere->name,0,9)."...";
+                                    else
+                                        $pcontent=$grouphere->name;
+                $arr[]=($pcontent);
             }
             $arr['success'] = 1; 
             echo json_encode($arr);
